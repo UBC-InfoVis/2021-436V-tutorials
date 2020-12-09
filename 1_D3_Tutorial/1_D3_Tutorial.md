@@ -9,6 +9,13 @@
 - Know how to load data into D3
 - Know how to bind data to visual elements
 
+#### Contents
+
+1. [D3 Projects](todo)
+2. [A Brief Overview of SVG](todo)
+3. [Adding a DOM Element with D3](todo)
+4. [Binding Data to Visual Elements](todo)
+
 
 ## 1. D3 Projects
 
