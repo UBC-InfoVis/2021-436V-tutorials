@@ -7,11 +7,11 @@ This tutorial will serve to refresh you in case you're rusty, for the prerequisi
 
 ### Tutorial Outline
 
-* 1. HTML: Set up and modify HTML documents
-* 2. CSS: Define CSS rules to style web pages (with CSS selectors)
-* 3. JS: Solid understanding of JavaScript fundamentals
-* 4. Tools: Use several web development tools (code editor, local webserver, web browser developer tools)
-* 5. Git: Use Git (required for submitting assignments and project milestones)
+1. HTML: Set up and modify HTML documents
+2. CSS: Define CSS rules to style web pages (with CSS selectors)
+3. JS: Solid understanding of JavaScript fundamentals
+4. Tools: Use several web development tools (code editor, local webserver, web browser developer tools)
+5. Git: Use Git (required for submitting assignments and project milestones)
 
 ## 1. HTML
 
@@ -91,7 +91,7 @@ div {
 }
 ```
 
-The image below shows the result of this CSS rule applied on a div-container. 
+*Result:* 
 
 ![CSS Example Result](css-example.png?raw=true "CSS Example Result")
 
@@ -100,10 +100,11 @@ If you are searching for an exhaustive list of style properties we recommend [Mo
 
 In the above example we have assigned our CSS rule to all div containers but if we want to style specific elements we can use the selectors *id* and *class*.
 
-As you can see in the example below, IDs are preceded with a hash mark (*#article-1*) and class names are preceded with a period (*.error*). You can also use descendant selectors to address nested elements (*.article .warning*), where the child is separated from its parent by a space.  
+As you can see in the example below, IDs are preceded with a hash mark (*#article-1*) and class names are preceded with a period (*.error*). You can also use descendent selectors to address nested elements (*.article .warning*), where the child is separated from its parent by a space.  
 
-*Example:* `style.css` and `index.html` files
-
+*Example:* 
+---
+`style.css` 
 ```css
 #article-1 {
 	text-decoration: underline;
@@ -116,7 +117,8 @@ As you can see in the example below, IDs are preceded with a hash mark (*#articl
 	color: blue;
 }
 ```
-
+---
+`index.html`
 ```html
 <!DOCTYPE HTML>
 <html lang="en">
