@@ -103,8 +103,9 @@ In the above example we have assigned our CSS rule to all div containers but if 
 As you can see in the example below, IDs are preceded with a hash mark (*#article-1*) and class names are preceded with a period (*.error*). You can also use descendent selectors to address nested elements (*.article .warning*), where the child is separated from its parent by a space.  
 
 *Example:* 
----
+
 `style.css` 
+
 ```css
 #article-1 {
 	text-decoration: underline;
@@ -117,8 +118,9 @@ As you can see in the example below, IDs are preceded with a hash mark (*#articl
 	color: blue;
 }
 ```
----
+
 `index.html`
+
 ```html
 <!DOCTYPE HTML>
 <html lang="en">
@@ -150,9 +152,9 @@ As you can see in the example below, IDs are preceded with a hash mark (*#articl
 
 *From now on, and in all upcoming tutorials and assignments we will use the common abbreviation JS for the term JavaScript.*
 
-In this course, we will use **ES6** (6th version of the JS standard ECMAScript) which is a significant update to previous JS versions. It includes dozens of new features to make your code more modern and more readable.
+In this course, we will use **ES6** (6th version of the JS standard ECMAScript) which is a significant update to previous JS versions. It includes dozens of new features to make your code more modern and more readable. One of these features is the (optional) ability to write object-oriented code.
 
-We highly recommend you to follow a JS style guide (e.g., [Airbnb](https://google.github.io/styleguide/jsguide.html) or [Google](https://google.github.io/styleguide/jsguide.html)) to ensure consistency and to improve the overall code quality, especially in team projects.
+We highly recommend that you follow a JS style guide (e.g., [Airbnb](https://google.github.io/styleguide/jsguide.html) or [Google](https://google.github.io/styleguide/jsguide.html)) to ensure consistency and to improve the overall code quality, especially in team projects.
 
 ### A short reiteration of the basic concepts of JS 
 
@@ -184,7 +186,7 @@ students = { count: 20 }; 	// Type error
 #### Data Structures
 
 ##### Arrays
-* Arrays can store a sequence of values, and contain any type of data. 
+* Arrays can store a sequence of values, and contain any type of data. Arrays are a compound type in JS.
 * Use bracket notation ```[]``` to define or access an array.
 
 ```javascript
@@ -211,7 +213,7 @@ let numberOfFruits = fruits.length;
 let nestedNumbers = [[1, 2], [3, 4], [5, 6]];
 ```
 
-> You can do much more with arrays than shown here. Again, check out the [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) documentation to learn more about specific concepts. Arrays are very important for data visualization, so take the time to go through this thoroughly!
+You can do much more with arrays than shown here. Again, check out the [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) documentation to learn more about specific concepts. Arrays are very important for data visualization, so take the time to go through this thoroughly!
 
 
 ##### Objects
@@ -246,9 +248,9 @@ let courses = [
 
 // To access this data we just follow the trail of properties
 courses[1].id; 	// Returns: CPSC110
-
-// Keep in mind: [...] means array and {...} means object!
 ```
+
+Keep in mind: [...] means array and {...} means object!
 
 ##### JSON (JavaScript Object Notation)
 
@@ -321,7 +323,7 @@ arrayWithNames.forEach( (element, index) => {
 
 #### Functions
 
-Here we list a few examples to show you the syntax for functions. In the following weeks you will learn more about anonymous functions, callbacks etc.
+Here we list a few examples to show you the syntax for functions. In the following weeks you will learn more about anonymous functions, callbacks, and other features. XXX TODO ADD TEMPLATE LITERAL EXPLANATION DOWN TO NEXT SECTION XXX
 
 ```javascript
 // Call a function
@@ -339,17 +341,17 @@ console.log("Write something to the web console");
 let temperature = `Current temperature: ${toCelsius(34)} Celsius`;
 ```
 
-Variables within a function are *private*, however, when they are declared outside a function they are *global*.
+Variables within a function have *private* scope, however, when they are declared outside a function they are *global*.
 
 
 ### More JavaScript
 
-Here we introduce some more advanced JS concepts, that will be very important once we start working with D3. Don't worry if you are not familiar with all those concepts — we will reiterate over them with more examples in the next tutorials in connection with D3.
+Here we introduce some more advanced JS concepts, that will be very important once we start working with D3. Don't worry if you are not familiar with all those concepts — we will reiterate them with more examples in the next tutorials in connection with D3.
 
 
 #### Functions are Objects
 
-In JS, functions are objects which can be *called*. They take arguments and they return values. But because of their object-like characteristics, they are also just values that can be stored in variables and passed on.
+In JS, functions are objects that can be *called*. They take arguments and they return values. But because of their object-like characteristics, they are also just values that can be stored in variables and passed on.
 
 There is an alternative way of defining functions:
 
@@ -372,7 +374,7 @@ let message = firstName => {
 console.log(message("Victoria"));	// Returns: Hello, I'm Victoria.
 ```
 
-> Note: Arrow functions have restricted functionality compared to "traditional functions". They don't have bindings to the `this` keyword and, thus, can't be used in the example below. Nevertheless, the compact arrow syntax makes D3 code typically more readable and we will use it in many situations. It's not a requirement in assignments or in the project and you can just use `function()` syntax!
+Note: Arrow functions have restricted functionality compared to "traditional functions". They don't have bindings to the `this` keyword and, thus, can't be used in the example below. Nevertheless, the compact arrow syntax makes D3 code typically more readable and we will use it in many situations. It's not a requirement in assignments or in the project and you can just use `function()` syntax!
 
 A more advanced example:
 
@@ -390,19 +392,19 @@ console.log(person.message()); // Returns: Hello, I'm Victoria.
 
 In all these examples, the current *scope* - the environment in which the function executes in - is important.
 
-The default scope for executing functions is the *Window Object* which is a browser level object representing the actual browser window/tab. Additionally, we have also used the keyword ```this```. In the global execution context (outside of the function), ```this``` refers to the global object. Inside a function, the value of ```this``` depends on how the function is called. 
+The default scope for executing functions is the *Window Object* which is a browser level object representing the actual browser window/tab. Additionally, we have also used the keyword ```this```. In the global execution context (outside of the function), ```this``` refers to the global *Window Object*. Inside a function or a class, the value of ```this``` depends on how it is called. 
 
-So that means, if you run the function in the person's scope (second example), you can access the first name via ```this```. If you use ```this.firstName``` in a function by itself (e.g. without the scope of the person object) it will give you an error, because your window object has no attribute ```firstName```.
+So that means, if you run the function in the `person` object's scope (second example), you can access the firstName attribute via ```this```. If you use ```this.firstName``` in a function by itself (e.g. without the scope of the person object) it will give you an error, because your window object has no attribute ```firstName```.
 
-If this still seems confusing to you, you can read up on this on the [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this). We will also come back to this in later tutorials.
+If `this` still seems confusing to you, you can read up on these ideas on the [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this). We will also come back to `this` in later tutorials.
 
 
 #### Array manipulation with higher-order functions
 
 JS offers several functions for fast array manipulation. These functions usually rely on concepts from functional programming and can be hard to grasp at the beginning. We will come back to them in more detail later, but below you find a first introduction.
-If you want to read up on higher-order functions, here is a [link](http://eloquentjavascript.net/05_higher_order.html).
+You can read further on [higher-order functions](http://eloquentjavascript.net/05_higher_order.html).
 
-The ***filter()*** method creates a new array with the elements that meet a condition implemented by the provided function.
+The ***filter(callback)*** method creates a new array with the elements that meet a condition implemented by the provided callback function.
 
 ```javascript
 // ---- Filter Example 1 - Get all cities except London ---- 
@@ -412,7 +414,7 @@ const cities = ["Vienna", "Paris", "London", "London"];
 // Pass an anonymous function to cities.filter()
 const filteredCities = cities.filter(city => city != "London");
 
-filteredCities // Returns: ["Vienna", "Paris"]
+console.log(filteredCities); // Returns: ["Vienna", "Paris"]
 
 
 // ---- Filter Example 2 - Get all numbers which are >= 10 and have array indices > 3 ---- 
@@ -424,11 +426,11 @@ const filteredNumericData = numericData.filter( (value, index) => {
 	return (value >= 10) && (index > 3);
 });
 
-filteredNumericData // Returns: [60, 80]
+console.log(filteredNumericData); // Returns: [60, 80]
 
 ```
 
-The ***sort()*** method sorts the items in an array. No new array object will be created during execution.
+The ***sort()*** method does an inline sort of the items in an array. No new array object will be created during execution.
 
 ```javascript
 // ---- Sort Example 1 - Filter array with strings (default sorting) ---- 
