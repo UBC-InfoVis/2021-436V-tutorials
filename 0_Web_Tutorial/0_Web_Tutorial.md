@@ -1,27 +1,17 @@
 # 0. Web Development
 
-The creation of expressive visualizations in D3 requires a certain level of programming experience and web development knowledge (HTML, CSS, JavaScript, etc) that is covered in [CPSC 310](https://courses.students.ubc.ca/cs/courseschedule?pname=subjarea&tname=subj-course&dept=CPSC&course=310) and inherited prerequisites. It is imperative that you are comfortable using all the technologies that we superficially walk through in this article.
+The reward of learning D3 is exponentially greater compared to higher-level visualization libraries that provide preconfigured templates for common chart types.
+However, the creation of expressive visualizations in D3 requires a certain level of programming experience and web development knowledge (HTML, CSS, JavaScript, etc) that is covered in [CPSC 310](https://courses.students.ubc.ca/cs/courseschedule?pname=subjarea&tname=subj-course&dept=CPSC&course=310) and inherited prerequisites. It is imperative that you are comfortable using all the technologies that we superficially walk through in this article. The learning curve of D3 is challenging for the short time span of a single academic term and we do not recommend taking this course if you had no previous exposure to web development.
 
-The learning curve of D3 is challenging for the short time span of a single academic term and we do not recommend taking this course if you had no previous exposure to web development.
+This tutorial will serve to refresh you in case you're rusty, for the prerequisite material. 
 
-However, we believe the reward of learning D3 is exponentially greater compared to higher-level visualization libraries that provide preconfigured templates for common chart types.
+### Tutorial Outline
 
-
-### Refresh in case you’re rusty!
-
-* Set up and modify HTML documents
-* Define CSS rules to style web pages (with CSS selectors)
-* Solid understanding of JavaScript fundamentals
-* Use several web development tools (code editor, local webserver, web browser developer tools)
-* Use Git (required for submitting assignments and project milestones)
-
-### Learning resources
-
-* [Curran Kelleher's video tutorial on JavaScript](https://www.youtube.com/watch?v=rUnmw9fQEwg&t=2s)
-* Tutorials, examples, documentations (HTML, CSS, JS): [W3Schools](https://www.w3schools.com/), [MDN web docs](https://developer.mozilla.org/en-US/docs/Learn)
-* [ES6 Guide](https://flaviocopes.com/es6/)
-* [CPSC 310 git tutorial](https://github.com/ubccpsc/310/blob/2019jan/resources/git.md)
-
+* 1. HTML: Set up and modify HTML documents
+* 2. CSS: Define CSS rules to style web pages (with CSS selectors)
+* 3. JS: Solid understanding of JavaScript fundamentals
+* 4. Tools: Use several web development tools (code editor, local webserver, web browser developer tools)
+* 5. Git: Use Git (required for submitting assignments and project milestones)
 
 ## 1. HTML
 
@@ -31,7 +21,7 @@ In D3 web applications, HTML is primarily used to create a basic layout and to a
 
 ### HTML Boilerplate
 
-Every HTML5 document requires a little bit of boilerplate code that you should just copy and past every time you create a new file. A boilerplate is a piece of code that is usually copied with little or no alteration, much like a template, to speed up the creation of new files. In the case of HTML5 this includes several HTML tags (e.g. \<head>, \<html>, ...) that don't have visual equivalents on the website, but that are necessary to define the document's metadata. 
+Every HTML5 document requires a little bit of boilerplate code that you should just copy and past every time you create a new file. A boilerplate is a piece of code that is usually copied with little or no alteration, much like a template, to speed up the creation of new files. In the case of HTML5 this includes several HTML tags (e.g. \<head>, \<html>, ...) that don't have visual equivalents on the website, but that are necessary to define the document's metadata. All HTML elements are surrounded by angle bracket tags, which come in pairs where the end is preceded by a slash. 
 
 Make sure to get familiar with this structure:
 
@@ -56,7 +46,7 @@ Make sure to get familiar with this structure:
 
 ### Classes and IDs
 
-Classes and IDs are extremely helpful for selecting specific HTML elements. Your CSS and JavaScript code will rely heavily on classes and IDs to identify elements in *selectors*.
+Classes and IDs are extremely helpful for selecting specific HTML elements. Your CSS and JavaScript (JS) code will rely heavily on classes and IDs to identify elements in *selectors*.
 
 (1) ```<div>Interactive Data Visualization</div>```
 
@@ -74,22 +64,20 @@ Elements can be assigned multiple classes, simply by separating them with a spac
 
 ### DOM
 
-The Document Object Model (DOM) is a programming interface for HTML, XML and SVG documents. It provides a hierarchical structured representation of the document (a tree) and it defines a way that the structure can be accessed from programs so that they can change the document structure, style and content. Or in other words, it is a model that the browser generates, when it parses the HTML document. We will later use JS/D3 to add to and manipulate the DOM dynamically.
+The Document Object Model (DOM) is a programming interface for HTML, XML, and SVG documents. It provides a hierarchical (tree-structured) representation of the document and it defines a way that the structure can be accessed from programs so that they can change the document structure, style, and content. Or in other words, it is a model that the browser generates, when it parses the HTML document. We will later use JS/D3 to add to and manipulate the DOM dynamically.
 
 
 ## 2. CSS
 
-With HTML you define the structure and content of the page and with CSS you set its style - things like fonts, colors, margins, backgrounds etc.
+With HTML you define the structure and content of the page and with CSS you set its style - things like fonts, colors, margins, backgrounds, and so on.
 
-A stylesheet will usually consist of a list of CSS rules that are inserted either in a ```<style>``` block in your HTML header, or, more often, stored in an external file and included via the below line of code. Make sure to include an external style sheet always in the HTML header (inside the ```<head></head>``` elements of your HTML file). 
+A stylesheet will usually consist of a list of CSS rules that are inserted either in a ```<style>``` block in your HTML header, or, more often, stored in an external file and included via the below line of code, which assumes that you have a separate file ```style.css``` in the folder ```css```. Make sure to always include an external style sheet in the HTML header (inside the ```<head></head>``` elements of your HTML file). 
 
 ```html
 <link rel="stylesheet" href="css/style.css"> 
-```
+``` 
 
-This assumes that you have a separate file ```style.css``` in the folder ```css```.
-
-*CSS styles consist of selectors and properties, grouped in curly brackets. A property and its value are separated by a colon, and the line is terminated with a semicolon.*
+CSS styles consist of selectors and properties, grouped in curly brackets. A property and its value are separated by a colon, and the line is terminated with a semicolon.
 
 A simple rule in CSS can look like the following:
 
@@ -103,6 +91,8 @@ div {
 }
 ```
 
+The image below shows the result of this CSS rule applied on a div-container. 
+
 ![CSS Example Result](css-example.png?raw=true "CSS Example Result")
 
 
@@ -110,7 +100,7 @@ If you are searching for an exhaustive list of style properties we recommend [Mo
 
 In the above example we have assigned our CSS rule to all div containers but if we want to style specific elements we can use the selectors *id* and *class*.
 
-As you can see in the example below, IDs are preceded with a hash mark (*#article-1*) and class names are preceded with a period (*.error*). You can also use descendant selectors to address nested tags (*.article .warning*).
+As you can see in the example below, IDs are preceded with a hash mark (*#article-1*) and class names are preceded with a period (*.error*). You can also use descendant selectors to address nested elements (*.article .warning*), where the child is separated from its parent by a space.  
 
 *Example:* `style.css` and `index.html` files
 
@@ -589,6 +579,13 @@ Here is a summary of the main aspects of *Bootstrap*:
 * Many websites are easily recognizable as "bootstrap projects" because of their similar look. We recommend you to use frameworks only as a starting point and customize components to fit your needs.
 
 ---
+
+## Additional Learning Resources
+
+* [Curran Kelleher's video tutorial on JavaScript](https://www.youtube.com/watch?v=rUnmw9fQEwg&t=2s)
+* Tutorials, examples, documentations (HTML, CSS, JS): [W3Schools](https://www.w3schools.com/), [MDN web docs](https://developer.mozilla.org/en-US/docs/Learn)
+* [ES6 Guide](https://flaviocopes.com/es6/)
+* [CPSC 310 git tutorial](https://github.com/ubccpsc/310/blob/2019jan/resources/git.md)
 
 *Sources:*
 
