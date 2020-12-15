@@ -1,8 +1,16 @@
-# Geographic Maps
+# V. Geographic Maps
 
-#### Learning goals
+#### Learning Objectives
 
 In this tutorial we want to show you how to convert geographical data to screen coordinates, in order to create interactive maps. These maps can show specific regions, countries or whole continents. You will learn how to render geographic data as paths, how to assign colors, and how to draw data points on top of the map.
+
+#### Tutorial Outline
+
+1. Mapping Geographic Data
+2. Symbol Maps
+3. Choropleth Maps
+4. Interactive Maps with Leaflet
+
 
 ## 1. Mapping Geographic Data 
 ### GeoJSON

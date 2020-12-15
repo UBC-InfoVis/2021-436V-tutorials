@@ -5,7 +5,7 @@ However, the creation of expressive visualizations in D3 requires a certain leve
 
 This tutorial will serve to refresh you in case you're rusty, for the prerequisite material. 
 
-### Tutorial Outline
+#### Tutorial Outline
 
 1. HTML: Set up and modify HTML documents
 2. CSS: Define CSS rules to style web pages (with CSS selectors)

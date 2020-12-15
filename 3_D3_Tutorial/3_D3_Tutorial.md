@@ -1,13 +1,13 @@
 # III. Data Joins and Basic Interactivity
 
-#### Learning objectives
+#### Learning Objectives
 
 * D3's enter-update-exit pattern and the alternative `.join()`method when fine-grained control of these three stages is not required.
 * Handle mouse click events and changes of UI components
 * Add animated transitions
 * Interactive tooltips
 
-#### Contents
+#### Tutorial Outline
 
 1. [Enter, Update, Exit](#enter-update-exit)
 2. [Making a bar chart](#more-d3-basics)

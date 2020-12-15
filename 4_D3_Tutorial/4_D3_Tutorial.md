@@ -1,6 +1,8 @@
 # IV. Multiple Views and Advanced Interactivity
 
-#### Learning objectives
+#### Learning Objectives
+
+In the last few weeks, you have learned the fundamentals of D3 and gained some implementation expertise during exercises and the first programming assignment. You should be comfortable with the major concepts and be able to implement common charts as well as interactive and more advanced visualizations with D3.
 
 * Linked interactions
 * Brushing and linking
@@ -8,7 +10,7 @@
 * D3 shape generators
 * Color and size legends
 
-#### Contents
+#### Tutorial Outline
 
 1. [Enter, Update, Exit](#enter-update-exit)
 2. [Making a bar chart](#more-d3-basics)
@@ -16,10 +18,7 @@
 4. [Making line and area charts](#making-line-and-area-charts)
 5. [Tooltips](#tooltips)
 
-
-In the last few weeks, you have learned the fundamentals of D3 and gained some implementation expertise during exercises and the first homework. You should be comfortable with the major concepts and be able to implement common charts as well as interactive and more advanced visualizations with D3.
-
-## Linked interactions
+## 1. Linked interactions
 
 Visualizations are often not just single charts and especially for more complex analysis tasks it is important to facet data across multiple coordinated views.
 
@@ -84,11 +83,11 @@ todo: figure
 	Whenever users click on a *bar* we want to update the selection and call `filterData()` to trigger a change in the scatter plot.
 	
 	```js
-	const bars = vis.chart.selectAll('.bar')
-        .data(vis.aggregatedData, vis.xValue)
+	const bars = chart.selectAll('.bar')
+        .data(aggregatedData, xValue)
       .join('rect')
         .attr('class', 'bar')
-        .attr('x', d => vis.xScale(vis.xValue(d)))
+        .attr('x', d => xScale(xValue(d)))
         // ... other attributes ... 
         .on('click', function(event, d) {
         	// Check if filter is already active
@@ -121,7 +120,7 @@ todo: figure
 
 You can see the final source code of this example here: [todo](todo)
 
-## D3 Layouts
+## D3 Shape Generators and Layouts
 
 Visualizations typically consist of discrete graphical marks, such as circles, rectangles, symbols, arcs, lines and areas. While the rectangles of a bar chart or the points in a scatter plot may be easy enough to generate directly using SVG, other shapes are more complex.
 
@@ -129,20 +128,61 @@ D3 provides functions — so-called *shape generators* — to help us with the c
 
 The D3 shape generators have no direct visual output but instead take the data you provide and transform it, thereby generating new data that is more convenient to draw.
 
+In the following, we introduce two more shape generators: *symbols* and *stacks*. There are many more functions, such as arcs, pies, and links, that you can look up in the [D3 documentation](https://github.com/d3/d3-shape).
+
 #### Symbols
 
-Symbols are commonly used in scatter plots. We can create them using the `d3.symbol()` function.
+Symbols are commonly used in scatter plots as a channel to encode categorical attributes and can be created in D3 using the shape generator function `d3.symbol()`. For example, we can generate the SVG path of a diamond symbol with `d3.symbol().type(d3.symbolDiamond)()`.
 
 ![D3 Symbols](d3-symbols.png?raw=true "D3 Symbols")
 
-For example, we can create an ordinal scale to show different symbols for the three categories *"Easy"*, *"Intermediate"*, and *"Difficult"*.
+**Example usage** in a scatter plot that uses three different symbols for the categories *"Easy"*, *"Intermediate"*, and *"Difficult"*.
 
+1. Initialize ordinal scale
+
+	```js
+	const symbolScale = d3.scaleOrdinal()
+	    .range([
+	    	d3.symbol().type(d3.symbolCircle)(),
+	    	d3.symbol().type(d3.symbolSquare)(),
+	    	d3.symbol().type(d3.symbolDiamond)()
+	    ])
+	    .domain(['Easy', 'Intermediate', 'Difficult']);
+	```
+
+2. Append symbols to SVG
+
+	```js
+	const symbols = chart.selectAll('.symbol')
+	    .data(data)
+	    .enter()
+	  .append('path')
+	    .attr('class', 'symbol')
+	    .attr('transform', d => `translate(${xScale(d.time)}, ${yScale(d.distance)})`)
+	    .attr('d', d => symbolScale(d.difficulty));
+	```
+	
+See the full source code of this example here: TODO
+
+![Scatterplot with shapes](example_scatterplot_shapes.png?raw=true "Scatterplot with shapes")
 
 #### Stacks
 
+show data excerpt
+
+load data, group data
+
+
+
+old:
 D3 offers a number of different layouts, each with distinct characteristics. Layouts are invoked using *d3.layout*:
 
-### Hierarchy
 
-See documentation for arcs etc.
 
+```js
+const stack = d3.stack().keys([0,1,2]);
+```
+
+```js
+const stack = d3.stack().keys([0,1,2]);
+```

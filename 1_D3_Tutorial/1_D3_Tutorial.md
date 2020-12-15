@@ -1,6 +1,6 @@
 # I. Intro to D3
 
-#### Learning objectives
+#### Learning Objectives
 
 - Know how to use basic shape elements in SVG
 - Reiterate advanced JS concepts: *method chaining*, *anonymous functions*, *asynchronous execution* and *callbacks*
@@ -9,7 +9,7 @@
 - Know how to load data into D3
 - Know how to bind data to visual elements
 
-#### Contents
+#### Tutorial Outline
 
 1. [D3 Projects](todo)
 2. [A Brief Overview of SVG](todo)

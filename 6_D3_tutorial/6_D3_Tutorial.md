@@ -1,6 +1,8 @@
-# Advanced Concepts
+# VI. Advanced Concepts
 
-#### Learning goals
+#### Learning Objectives
+
+#### Tutorial Outline
 
 
 ## D3 bin (histograms) 
