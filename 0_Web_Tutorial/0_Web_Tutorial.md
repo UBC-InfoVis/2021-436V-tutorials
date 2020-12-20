@@ -323,7 +323,7 @@ arrayWithNames.forEach( (element, index) => {
 
 #### Functions
 
-Here we list a few examples to show you the syntax for functions. In the following weeks you will learn more about anonymous functions, callbacks, and other features. XXX TODO ADD TEMPLATE LITERAL EXPLANATION DOWN TO NEXT SECTION XXX
+Here we list a few examples to show you the syntax for functions. In the following weeks you will learn more about anonymous functions, callbacks, and other features.
 
 ```javascript
 // Call a function
@@ -336,9 +336,6 @@ function toCelsius(fahrenheit) {
 
 // Another function call
 console.log("Write something to the web console");
-
-// Function returns a dynamic variable that is embedded using template literals 
-let temperature = `Current temperature: ${toCelsius(34)} Celsius`;
 ```
 
 Variables within a function have *private* scope, however, when they are declared outside a function they are *global*.
@@ -348,8 +345,25 @@ Variables within a function have *private* scope, however, when they are declare
 
 Here we introduce some more advanced JS concepts, that will be very important once we start working with D3. Don't worry if you are not familiar with all those concepts — we will reiterate them with more examples in the next tutorials in connection with D3.
 
+#### Template literals
 
-#### Functions are Objects
+Template literals are an alternative way to concatenate strings and variables. We specify literals with back-ticks (\`) at the beginning and end to distinguish them from ordinary strings that use single or double quotes. Inside a literal, we use placeholders that are indicated by a dollar sign and curly braces (`${expression}`).
+
+```js
+const temp = 39; 
+const message = `The expected max. temperature today is ${temp}°C`;
+```
+
+A placeholder supports any JS expression, so we can subsitute a lot more than variable names. For example, we can embed an arithmetic expression inline or call a function:
+
+```js
+// Function returns a dynamic variable that is embedded using template literals 
+const message = `Current temperature: ${toCelsius(34)}°C`;
+```
+
+Another benefit of template literals, besides the concise syntax, is that they can span multiple lines.
+
+#### Functions are objects
 
 In JS, functions are objects that can be *called*. They take arguments and they return values. But because of their object-like characteristics, they are also just values that can be stored in variables and passed on.
 
@@ -496,17 +510,19 @@ expensiveProducts // Returns: [{ name: "laptop", price: 1600 }, { name: "phone",
 
 You can use any code editor that you are comfortable with. Some developers prefer basic editors, such as [Sublime Text](https://www.sublimetext.com/) or [Atom](https://atom.io/), while others prefer full IDEs, such as [Webstorm](https://www.jetbrains.com/community/education/#students) (free student license available). Especially for the team project you should take an IDE into consideration.
 
-You may also want to try online interactive notebooks (such as [Observable](http://observablehq.com/)) that become increasingly popular to experiment with smaller D3 examples. However, we don't recommend these notebooks for assignments because you need to use given templates and submit the source code through git.
+You may also want to try online interactive notebooks (such as [Observable](http://observablehq.com/)) that become increasingly popular to experiment with smaller D3 examples. However, they are not suitable for assignments because you need to use our given templates and submit the source code through git.
 
 ### Local web server
 
-When developing a visualization, the data files are usually loaded dynamically using JS, such as `d3.csv()`. In this case, you will need to start a local web server to serve all your HTML/CS/JS and data files. We recommend two simple command line options to start a server. Then you can view the results on a browser using `http://localhost:[PORT-NUMBER]`.
+When developing a visualization, the data files are usually loaded dynamically using JS, such as `d3.csv()`. In this case, you will need to start a local web server to serve all your HTML/CS/JS and data files. 
+
+We recommend two alternative command line options to start a server within your project directory:
 
 * **HTTP server provided by Python**. For Python 2, use `python -m SimpleHTTPServer [PORT-NUMBER]`. For Python 3, use `python -m http.server [PORT-NUMBER]`
 
 * **HTTP server provided by NodeJS**. First install through npm: `npm install http-server -g`. Then start the server: `http-server [PATH] -p [PORT-NUMBER]`. When specifying the path, please avoid spaces in the path name or use double quatations.
 
-*Note that you should start the server in the project directory.*
+In both cases, you can view the results in a web browser using `http://localhost:[PORT-NUMBER]`.
 
 Alternatively, you can use an **IDE**, such as [Webstorm](https://www.jetbrains.com/webstorm/) to view your D3 project on a local web server (i.e., in Webstorm → right-click on `myProjectIndex.html` → `run`).
 
@@ -519,13 +535,13 @@ The official browser websites provide detailed descriptions and tutorials: see [
 
 Most important are the *Web Inspector* and the *JavaScript Console*.
 
-* ***Web Inspector:*** We can see something that looks like the source code of the HTML document that you wrote in your editor. Some tags are probably collapsed. Actually, you are not viewing the raw content of your HTML document. What you are seeing is the visual representation of the DOM tree (after all scripts have run and potentially modified the original HTML source)!
+* **Web Inspector:** We can see something that looks like the source code of the HTML document that you wrote in your editor. Some tags are probably collapsed. Actually, you are not viewing the raw content of your HTML document. What you are seeing is the visual representation of the DOM tree (after all scripts have run and potentially modified the original HTML source)!
 
 	The HTML you write is parsed by the browser and turned into the DOM. In simple cases this will look like your raw HTML, but if any JS code has been executed, the current DOM may be different, as JS commands can add, remove, and adjust the DOM dynamically.
 	
 	In a separate *styles panel*, you can see all CSS rules that are being applied to whatever element is currently selected in the DOM Tree.
 	
-* ***Web Console:*** When you implement JS and D3 components you will frequently log messages to the Console to make sure that your code works as expected. You can also use the Console to execute JS statements directly to change how the page looks or runs.
+* **Web Console:** When you implement JS and D3 components you will frequently log messages to the Console to make sure that your code works as expected. You can also use the Console to execute JS statements directly to change how the page looks or runs.
 
 If you haven't done already, it's now time to open the developer tools in your browser and explore the various features. You can, for example, inspect the DOM and CSS attributes of a random web page, and test a few JS commands in the console.  
 
@@ -584,14 +600,14 @@ Here is a summary of the main aspects of *Bootstrap*:
 
 ---
 
-## Additional Learning Resources
+##### Additional Learning Resources
 
 * [Curran Kelleher's video tutorial on JavaScript](https://www.youtube.com/watch?v=rUnmw9fQEwg&t=2s)
 * Tutorials, examples, documentations (HTML, CSS, JS): [W3Schools](https://www.w3schools.com/), [MDN web docs](https://developer.mozilla.org/en-US/docs/Learn)
 * [ES6 Guide](https://flaviocopes.com/es6/)
 * [CPSC 310 git tutorial](https://github.com/ubccpsc/310/blob/2019jan/resources/git.md)
 
-*Sources:*
+##### Sources
 
 * [Harvard's visualization course (CS171)](https://www.cs171.org/)
 * [dataviscourse.net (University of Utah)](http://dataviscourse.net/tutorials/lectures/lecture-git/)
