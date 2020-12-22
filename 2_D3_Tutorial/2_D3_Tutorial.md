@@ -1,11 +1,6 @@
 # II. Making a Chart
 
-#### Learning objectives
-
-- Understand the concept of *input domains* and *output ranges*
-- Know how to create scales and axes in D3
-- Know how to group and transform SVG elements
-- Know how to create reusable components
+In this tutorial, you will learn how to create basic chart types, such as bar charts, scatter plots, and line charts. We will introduce the concept of *input domains* and *output ranges* which are the basis for *D3 scales* and needed in almost every visualization. We will also show you an object-oriented approach to make visualization components reusable.
 
 #### Contents
 
@@ -18,7 +13,7 @@
 
 ### SVG groups
 
-In the last tutorial you have learned how to create basic SVG shapes, like rectangles or circles. But there is another SVG element that is very useful for programming in D3: the group element (```<g></g>```). In contrast to graphical elements the group element does not have a visual presence, but it helps you to organize other elements and to apply *transformations*. In this way, you can create hierarchical structures. 
+In the last tutorial, we created basic SVG shapes, like rectangles or circles, but there is another SVG element that is very useful for programming in D3: the group element (`<g></g>`). In contrast to graphical elements, the group element does not have a visual presence but it helps us to organize other elements and to apply *transformations*. In this way, we can create hierarchical structures. 
 
 ```javascript
 // Create group element
@@ -29,7 +24,7 @@ const circle = group.append('circle')
 	.attr('r', 4)
 	.attr('fill', 'blue');
 ```
-Group elements are invisible but you can apply transformations, for example *translate()* or *rotate()*, to the group and it will affect the rendering of **all child elements**! 
+Group elements are invisible but we can apply transformations, for example *translate()* or *rotate()*, to the group and it will affect the rendering of all child elements. 
 
 ```javascript
 // Group element with 'transform' attribute
@@ -44,16 +39,16 @@ const group = svg.append("g")
 
 ### Scales
 
-Until now, we used only *x* and *y* values that corresponded directly to pixel measurements on the screen, within a pre-defined SVG drawing area. 
+Until now, we have only used *x* and *y* values that corresponded directly to pixel measurements on the screen, within a pre-defined SVG drawing area.
 That is not very flexible and only feasible for static data. What if our data attributes are suddenly doubled? We can not increase the size of the chart every time a value increases. At some point, the user might have to scroll through a simple bar chart to get all the information.
 
-→ This is where ***scales*** come in. We specify a fixed SVG drawing space in our webpage and scale the data to fit in the dedicated area.
+This is where ***scales*** come in. We specify a fixed SVG drawing space on our web page and scale the data to fit in the dedicated area.
 
 * Scales are functions that map from an input domain to an output range.
-* D3 provides built-in methods for many different scales: linear, ordinal, logarithmic, square root etc. Most of the time you will use *linear scale functions* , so we will focus on learning this type of scale.
+* D3 provides built-in methods for many different scales: linear, ordinal, logarithmic, square root, and so on. Most of the time you will use *linear scale functions*, so we will focus on learning this type of scale.
 * You can read more about D3 scales here:<br>[https://github.com/d3/d3-scale/blob/master/README.md](https://github.com/d3/d3-scale/blob/master/README.md)
 
-*Example:* We want to visualize the monthly sales of an ice cream store. The input data are numbers between 0 and 20,000 USD and the maximum height of the chart is 400px. We take an input inverval (called ***Domain***) and transform it into a new output interval (called ***Range***).
+*Example:* We want to visualize the monthly sales of an ice cream store. The input data are numbers between 0 and 20,000 USD and the maximum height of the chart is 400px. We take an input inverval (called ***domain***) and transform it into a new output interval (called ***range***).
 
 ![Scales](input_domain_output_scale.png?raw=true "Scales")
 
@@ -148,7 +143,7 @@ We can then bind the colour scale to data values and render it:
 ![D3 Ordinal Color Scale](color_scale_ordinal.png?raw=true)
 
 
-Instead of using a fixed range of colours you can use linear scale functions to create colour gradients: 
+Instead of using a fixed range of colours, you can use linear scale functions to create colour gradients: 
 
 ```javascript
 const linearColor = d3.scaleLinear()
@@ -166,7 +161,7 @@ Read more about [D3 colour scales](https://github.com/d3/d3-scale-chromatic/blob
 
 We typically need to add x- and y-axes to allow the user to extract meaningful insights from visualizations. An ***axis*** is the visual representation of a scale.
 
-D3 provides four methods to create axes with different orientations and label placements (d3.axisTop, d3.axisBottom, d3.axisLeft, and d3.axisRight) which can display reference lines for D3 scales automatically. These axis components contain lines, labels and ticks.
+D3 provides four methods to create axes with different orientations and label placements (`d3.axisTop`, `d3.axisBottom`, `d3.axisLeft`, and `d3.axisRight`) which can display reference lines for D3 scales automatically. These axis components contain lines, labels, and ticks.
 
 ```javascript
 // Create a horizontal axis with labels placed below the axis
@@ -184,7 +179,7 @@ const xAxis = d3.axisBottom().scale(xScale);
 
 Finally, to add the axis to the SVG, we need to specify the position in the DOM tree and then we have to *call* the axis function.
 
-We create an SVG group element as a selection and use the *call()* function to hand it off to the *xAxis* function. All the axis elements are getting generated within that group.
+We create an SVG group element as a selection and use the `call()` function to hand it off to the *axis* function. All the axis elements are getting generated within that group.
 
 ```javascript
 // Draw the axis
@@ -211,14 +206,13 @@ There are many different options to customize axes:
 - Predefined tick values: `.tickValues([0, 10, 20, 30, 40])`
 - Remove tick marks at the beginning and end of an axis: `.tickSizeOuter(0)`
 
-You can read more about D3 axis, ticks and tick formatting in the *D3 API reference*: <br>
-&raquo; [https://github.com/d3/d3-axis/blob/master/README.md](https://github.com/d3/d3-axis/blob/master/README.md)
+You can read more about D3 axis, ticks, and tick formatting in the [D3 documentation](https://github.com/d3/d3-axis/blob/master/README.md).
 
 &nbsp;
 
 ## 2. Making a Bar Chart
 
-Now we know most of the concepts to create a D3 bar chart with a categorical axis (`y`) and a linear axis (`x`). First, we need to download the D3 library and create a simple HTML page. **Important:** A local web server is necessary because we load data from a CSV file; otherwise we will get a browser error.
+Now, we know most of the concepts to create a D3 bar chart with a categorical y-axis and a linear x-axis. First, we need to download the D3 library and create a simple HTML page. **Important:** A local web server is necessary because we load data from a CSV file; otherwise we will get a browser error.
 
 *index.html*
 
@@ -335,7 +329,7 @@ Positioning the axes or defining the correct margins between components can be c
 
 #### Other chart refinements
 
-We apply `.tickSizeOuter(0)` to remove tick marks at the beginning and end of an axis, and set the number of x-axis ticks with `.ticks(6)`. Additionally, we use CSS to adjust the style of the chart slightly. We now also specify the bar color in CSS because it is independent of the data.
+We apply `.tickSizeOuter(0)` to remove tick marks at the beginning and end of an axis, and set the number of x-axis ticks with `.ticks(6)`. Additionally, we use CSS to adjust the style of the chart slightly. We now also specify the bar colour in CSS because it is independent of the data.
 
 ```css
 .axis path,
@@ -419,9 +413,10 @@ function showBarChart(data) {
 } 
 ```
 
-**Result:**
+*Result:*
 
 ![D3 Bar Chart](d3_bar_chart_2.png?raw=true "D3 Bar Chart")
+
 
 &nbsp;
 
@@ -443,7 +438,7 @@ We recommend creating a JavaScript class for each visualization chart type that 
 
 ES6 introduced classes to better support object-oriented programming that you should use. Note that when reading code for older JavaScript versions, a similar functionality was achieved by using Object.prototype functions.
 
-Similar to other programming languages ES6 classes have a constructor and properties can be defined by using the keyword ```this```:
+Similar to other programming languages, ES6 classes have a constructor and properties can be defined by using the keyword ```this```:
 
 ```javascript
 // ES6 Class
@@ -529,10 +524,13 @@ This methodology will become very helpful for developing larger systems and more
 
 ### Examples
 
-1. [Static bar chart](todo) *(previous example turned into ES6 class)*
+We have used this approach to turn the previous bar chart example into a resuable class. You can look at the complete example on [codesandbox](todo) where you can also play around with different parameters and styles.
 
-2. [Static scatter plot](todo)
-	![Static scatter plot](d3_scatterplot_example.png?raw=true "Static scatter plot")
+[![D3 Bar Chart](codesandbox_d3-static-bar-chart.png?raw=true "D3 Bar Chart")](todo)
+
+You should also check out our scatter plot example on [codesandbox](todo).
+
+[![Static scatter plot](codesandbox_d3-static-scatter-plot.png?raw=true "Static scatter plot")](todo)
 	
 &nbsp;
 
@@ -552,7 +550,7 @@ For creating line and area charts we want to use SVG's [path](https://www.w3scho
 
 Fortunately, D3 provides the `d3.line()` and `d3.area()` functions, allowing us to draw a line and area charts more efficiently. Basically these functions take our data and convert it into the SVG path coordinates we wrote above.
 
-*Line generator*
+Using D3's *line generator*:
 
 ```javascript
 const data = [{x: 0, y: 10}, {x: 100, y: 75}, {x: 300, y: 90}, {x: 350, y: 20}]
@@ -571,7 +569,7 @@ d3.select('svg').append('path')
 
 ![D3 SVG path](d3_svg_path.png?raw=true "D3 SVG path")
 
-The *area generator* works similar. An area is defined by two polylines and we need to specify differing y-values (y0 and y1). Most commonly, y0 is defined as a constant representing zero. The first line (the topline) is defined by y1 and is rendered first; the second line (the baseline) is defined by y0 and is rendered second. The two lines typically share the same x-values.
+The *area generator* works similar. An area is defined by two polylines and we need to specify differing y-values (`y0` and `y1`). Most commonly, `y0` is defined as a constant representing zero. The first line (the topline) is defined by `y1` and is rendered first; the second line (the baseline) is defined by y0 and is rendered second. The two lines typically share the same x-values.
 
 ```javascript
 const data = [{x: 0, y: 10}, {x: 100, y: 75}, {x: 300, y: 90}, {x: 350, y: 20}]
@@ -623,11 +621,9 @@ const line = d3.line()
 
 ### Example
 
-[Static area chart](todo)
+In this example, we used a line and area generator. You can look at the full source code on [codesandbox](todo). We will extend this visualization in later tutorials by adding interactive tooltips and filters.
 
-In this example, we used a line and area generator. We will extend this visualization in later tutorials by adding interactive tooltips and filters.
-
-![Static area chart](d3_area_chart_example.png?raw=true "Static area chart")
+[![Static area chart](codesandbox_d3-static-area-chart.png?raw=true "Static area chart")](todo)
 
 
 ---

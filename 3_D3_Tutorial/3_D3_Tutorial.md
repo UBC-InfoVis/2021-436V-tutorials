@@ -1,11 +1,6 @@
 # III. Data Joins and Basic Interactivity
 
-#### Learning Objectives
-
-* D3's enter-update-exit pattern and the alternative `.join()`method when fine-grained control of these three stages is not required.
-* Handle mouse click events and changes of UI components
-* Add animated transitions
-* Interactive tooltips
+In this tutorial, we introduce the enter-update-exit pattern which is a key concept to make D3 visualizations fully interactive. We present further examples on mouse events, animated transitions, and tooltips.
 
 #### Tutorial Outline
 
@@ -18,11 +13,11 @@
 
 ## 1. Enter, Update, Exit 
 
-By now you have learned how to load external data and how to map it to visual elements, for example, to create a bar chart. But very often you have to deal with changing data or a continuous data stream rather than a static CSV file. Dynamic data often requires more sophisticated user interfaces that allow users to interact with the data (e.g., filter and sort).
+By now you have learned how to load external data and how to map it to visual elements, for example, to create a bar chart. But very often we have to deal with changing data or a continuous data stream rather than a static CSV file. Dynamic data often requires more sophisticated user interfaces that allow users to interact with the data (e.g., filter and sort).
 
-**Instead of removing and redrawing visualizations each time new data arrives, update only affected components to improve loading times and create smooth transitions.**
+**Instead of removing and redrawing visualizations each time new data arrives, we want to update only affected components to improve loading times and create smooth transitions.**
 
-We will accomplish this by using D3's general update pattern.
+We will accomplish this by using D3's enter-update-exit pattern.
 
 ### *"Updating data"* means *"joining data"*
 
@@ -30,15 +25,15 @@ A data-join is followed by operations on the three virtual selections: **enter**
 
 This means that we are merging new data with existing elements. In the merging process we have to consider:
 
-- What happens to new data values without existing, associated DOM elements (enter)
-- What happens to existing elements which have changed (update)
-- What happens to existing DOM elements which are not associated with data anymore (exit)
+- Enter: What happens to new data values without existing, associated DOM elements?
+- Update: What happens to existing elements which have changed?
+- Exit: What happens to existing DOM elements which are not associated with data anymore?
 
 ![Data Join](enter_update_exit_sketch.jpg?raw=true "Data Join")
 
-*To take care of the update pattern you have to change the sequence of your D3 code a little bit. Instead of chaining everything together, some code snippets must be separated.*
+To take care of the enter-update-exit pattern, we have to change the sequence of our D3 code a little bit. Instead of chaining everything together, some code snippets must be separated.
 
-We create an SVG and select it in D3:
+We create an SVG element and select it in D3:
 
 ```javascript
 const svg = d3.select('svg');
@@ -62,7 +57,7 @@ circle = circle.enter().append('circle')
     .attr('cy', 80);
 ```
 
-(You might have noticed that we've actually already used this pattern multiple times.)
+*(You might have noticed that we've actually already used this pattern multiple times.)*
 
 But often you want to do the exact opposite operation. If someone filters the dataset you may want to remove existing elements. In this case, you have to use the ```exit``` selection. ```exit``` contains the leftover elements for which there is no corresponding data anymore.
 
@@ -403,6 +398,8 @@ data analysis tasks. In this case, use a static comparison of several charts/ima
 
 When you create interactive visualizations, you often want to show tooltips to reveal more details about your data to your audience. There are different approaches to achieve this but we recommend the creation of a global tooltip container outside of the SVG that you can show/hide and position whenever users hover over a mark. This approach allows you to create more complex tooltip objects that can be styled with CSS and contain images or even small visualizations.
 
+Example implementation workflow:
+
 * Add tooltip placeholder to the *HTML* file:
 	
 	```html
@@ -444,10 +441,13 @@ When you create interactive visualizations, you often want to show tooltips to r
 
 ![Interactive Bar Chart](interactive_bar_chart_example.gif?raw=true "Interactive Bar Chart")
 
+[![Codesandbox: Interactive Bar Chart](codesandbox_d3-interactive-bar-chart.png?raw=true "Codesandbox: Interactive Bar Chart")](todo)
+
 [Interactive scatter plot with filters and tooltips](todo)
 
 ![Interactive Scatter Plot](interactive_scatter_plot_example.gif?raw=true "Interactive Scatter Plot")
 
+[![Codesandbox: Interactive Scatter Plot](codesandbox_d3-interactive-scatter-plot.png?raw=true "Codesandbox: Interactive Scatter Plot")](todo)
 
 ### Tooltips for path elements (fuzzy position)
 
@@ -457,7 +457,7 @@ Until now, we have created tooltips only for basic SVG elements such circles or 
 
 We illustrate the mechanism for showing tooltips at fuzzy positions based on a line chart (date on x-axis, stock price on y-axis). 
 
-1. Add tracking area that covers the whole chart. Whenever users place their mouse cursor inside this area, we want to show a tooltip. After every `mousemove` event we need to update the tooltip accordingly.
+1. We add a tracking area that covers the whole chart. Whenever users place their mouse cursor inside this area, we want to show a tooltip. After every `mousemove` event we need to update the tooltip accordingly.
 
 	```js
 	const trackingArea = vis.chart.append('rect')
@@ -482,13 +482,13 @@ We illustrate the mechanism for showing tooltips at fuzzy positions based on a l
 	const xPos = d3.pointer(event, this)[0]; // First array element is x, second is y
 	```
 
-3. Previously you learned how to use D3 scales to convert data values (input domain) to pixels (output range). We can now use the `invert()` function to do the opposite and get the date that corresponds to the mouse x-coordinate.
+3. We have used D3 scales multiple times to convert data values (input domain) to pixels (output range). We can now use the `invert()` function to do the opposite and get the date that corresponds to the mouse x-coordinate.
 
 	```js
 	const date = vis.xScale.invert(xPos);
 	``` 
 
-4. Find the data point (stock price) based on the selected date. We use a special helper function `d3.bisector` that returns the nearest `date` (in our dataset) that falls to the left of the mouse cursor.
+4. We want to find the data point (stock price) based on the selected date. Therefore, we use a special helper function `d3.bisector` that returns the nearest `date` (in our dataset) that falls to the left of the mouse cursor.
 
 	We initialize the d3.bisector somewhere outside of `.on('mousemove')`:
 	
@@ -509,9 +509,11 @@ We illustrate the mechanism for showing tooltips at fuzzy positions based on a l
 	
 	At the end we can display an HTML or SVG tooltip with the available mouse coordinates and the corresponding data.
 	
-See the final code in the **example**: [interactive line chart]()
+See the complete interactive line chart example on [codesandbox](todo).
 
 ![Interactive line chart](interactive_line_chart_example.gif?raw=true "Interactive line chart")
+
+[![Codesandbox: Interactive Line Chart](codesandbox_d3-interactive-line-chart.png?raw=true "Codesandbox: Interactive Line Chart")](todo)
 
 ---
 
