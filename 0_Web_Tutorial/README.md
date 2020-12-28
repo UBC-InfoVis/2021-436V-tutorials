@@ -94,7 +94,7 @@ div {
 
 *Result:* 
 
-![CSS Example Result](css-example.png?raw=true "CSS Example Result")
+![CSS Example Result](images/css-example.png?raw=true "CSS Example Result")
 
 
 If you are searching for an exhaustive list of style properties we recommend [Mozilla's Developer Platform](https://developer.mozilla.org/en-US/docs/Web/CSS) or [w3schools.com](http://www.w3schools.com/CSS/). Some CSS properties are needed quite often, so you should try to memorize them.
@@ -147,7 +147,7 @@ As you can see in the example below, IDs are preceded with a hash mark (*#articl
 
 *Result:*
 
-![CSS Example 2 Result](css-example-2.png?raw=true "CSS Example 2 Result")
+![CSS Example 2 Result](images/css-example-2.png?raw=true "CSS Example 2 Result")
 
 ## 3. <a name="js">JavaScript (JS)</a>
 

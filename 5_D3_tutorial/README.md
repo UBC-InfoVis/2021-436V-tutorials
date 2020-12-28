@@ -2,17 +2,17 @@
 
 #### Learning Objectives
 
-In this tutorial we want to show you how to convert geographical data to screen coordinates, in order to create interactive maps. These maps can show specific regions, countries or whole continents. You will learn how to render geographic data as paths, how to assign colors, and how to draw data points on top of the map.
+In this tutorial we want to show you how to convert geographical data to screen coordinates, in order to create interactive maps. These maps can show specific regions, countries or whole continents. You will learn how to render geographic data as paths, how to assign colors, and how to visualize data points on top of a base map. We will also introduce the JS library Leaflet which can be used to create interactive tile maps and can be further enhanced with superimposed D3 layers.
 
 #### Tutorial Outline
 
-1. Mapping Geographic Data
-2. Symbol Maps
-3. Choropleth Maps
-4. Interactive Maps with Leaflet
+1. [Mapping Geographic Data](#mapping-geo-data)
+2. [Symbol Maps](#symbol-maps)
+3. [Choropleth Maps](#choropleth-maps)
+4. [Interactive Maps with Leaflet](#leaflet)
 
 
-## 1. Mapping Geographic Data 
+## 1. <a name="mapping-geo-data">Mapping Geographic Data</a> 
 ### GeoJSON
 
 GeoJSON is a JSON-based standard for encoding a variety of geographic data structures. We need the data (e.g., country boundaries, points of interests) in a proper format to generate visualizations of geographic data. Web browsers and especially D3 are not able to render traditional shapefiles, which are used by experts in geographic information systems (GIS). Therefore, GeoJSON has been established as a common way to store this information for use in web browsers.
@@ -75,13 +75,13 @@ Drawing a geographical map requires the mapping of geographical coordinates (lon
 
 D3 already includes a large set of [geo projections](https://github.com/d3/d3-geo).
 
-![D3 projections](d3_projections.png?raw=true "D3 projections")
+![D3 projections](images/d3_projections.png?raw=true "D3 projections")
 
 All projections of a sphere on a 2D plane necessarily distort the surface in some way and, depending on the type of map and geo data, a specific projection is more or less suitable.
 
 Different projection methods have different characteristics (e.g., distance, direction, shape, area) and show different levels of distortion.
 
-*You can take a look at the [documentation](https://github.com/d3/d3-geo#projections), [observable notebooks](https://observablehq.com/collection/@d3/d3-geo-projection), or [Jason Davies' examples](https://jasondavies.com/maps/) to see different geo projections.*
+You can take a look at the [documentation](https://github.com/d3/d3-geo#projections), [observable notebooks](https://observablehq.com/collection/@d3/d3-geo-projection), or [Jason Davies' examples](https://jasondavies.com/maps/) to see different geo projections.
 
 
 ### Workflow to implement a geo map with D3
@@ -125,7 +125,7 @@ d3.json('canada_provinces.topo.json').then(data => {
 });
 ```
 
-![Canada mercator projection](canada_mercator.png?raw=true "Canada mercator projection")
+![Canada mercator projection](images/canada_mercator.png?raw=true "Canada mercator projection")
 
 The accessor for the specific object you want to extract (e.g. `data.objects.provinces`) is always dependent on your TopoJSON data and you need to check the documentation of the data provider or inspect the file with a JSON viewer to get the names of the desired attributes.
 
@@ -141,12 +141,17 @@ const geoBoundaryPath = d3.select('svg').selectAll('.geo-boundary-path')
         .attr('d', geoPath);
 ```
 
+See our example on [codesandbox](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-compare-projections) that shows the Mercator projection and the Lambert conformal conic projection side by side. The Lambert projection is commonly used to visualize Canada's provinces and is recommended by [Statistics Canada](https://www150.statcan.gc.ca/n1/pub/92-195-x/2011001/other-autre/mapproj-projcarte/m-c-eng.htm).
 
-## 2. Symbol Maps
+
+[![Codesandbox Compare Map Projections](images/codesandbox_d3-compare-projections.png?raw=true "Codesandbox Compare Map Projections")](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-compare-projections)
+
+
+## 2. <a name="symbol-maps">Symbol Maps</a>
 
 You have seen how to draw a vector map with D3 but we are currently not encoding any data besides the geography. In the next step, we will create a symbol map that shows the *New Seven World Wonders* with the circle size indicating the average number of visitors. The result looks like this:
 
-![Symbol Map](symbol-map.png?raw=true "Symbol Map")
+![Symbol Map](images/symbol-map.png?raw=true "Symbol Map")
 
 1. **Load data**
 
@@ -171,6 +176,7 @@ You have seen how to draw a vector map with D3 but we are currently not encoding
 	})
 	```
 	&nbsp;
+	
 	
 2. **Initialize projection and path generator**
 	
@@ -311,7 +317,13 @@ You have seen how to draw a vector map with D3 but we are currently not encoding
         });
    ```	
 
-## 3. Choropleth Maps
+See the full example on [codesandbox](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-symbol-map).
+
+[![Codesandbox Symbol Map](images/codesandbox_d3-symbol-map.png?raw=true "Codesandbox Symbol Map")](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-symbol-map)
+
+&nbsp;
+
+## 3. <a name="choropleth-maps">Choropleth Maps</a>
 
 Besides symbol maps, a common technique to visualize geographic data is to create a choropleth map where regions are *coloured* or *patterned* based on the variable of interest. Choropleth maps have some perceptual limitations that you should keep in mind:
 
@@ -398,15 +410,17 @@ In the following, we will highlight the main differences for implementing a chor
         }); 
 	```
 
-![Choropleth Map](choropleth-map.png?raw=true "Choropleth Map")
+See the full example on [codesandbox](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-choropleth-map).
 
-## 4. Interactive Maps with Leaflet
+[![Codesandbox Choropleth Map](images/codesandbox_d3-choropleth-map.png?raw=true "Codesandbox Choropleth Map")](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-choropleth-map)
 
-We can add interactive components to a D3 vector map, such as tooltips or zooming and panning, but the functionality is limited and the information density is usually not comparable to *interactive tile maps*, with Google Maps being the most prominent example. For many cases, a basic vector map is appropriate because we don't want to have additional layers or information that distracts from the actual data we want to communicate or analyze. 
+## 4. <a name="leaflet">Interactive Maps with Leaflet</a>
+
+We can add interactive components to a D3 vector map, such as tooltips or zooming and panning, but the functionality is limited and the information density is usually not comparable to *interactive tile maps*, with Google Maps being the most prominent example. For many cases, a basic vector map is appropriate because we do not want to have additional layers or information that distracts from the actual data we need to communicate or analyze. 
 
 For some tasks, an interactive, zoomable map may be beneficial. For example, in our case study [Vancouver Bike Sharing](todo), we visualize bikeways and available bikes/slots at docking stations. In this specific scenario, it is helpful for users to zoom in and out to see roads, terrain, etc. at different levels of granularity. We can also use the geo location to automatically zoom in and show the nearest bike sharing stations.
 
-In the following, we will provide a brief overview of [Leaflet](https://leafletjs.com/) which is an open-source alternative to Google Maps. In our separate [case study](todo), we will guide you through an implementation that visualizes live data from an API using a Leaflet map. 
+In the following, we will provide a brief overview of [Leaflet](https://leafletjs.com/) which is an open-source alternative to Google Maps. In our [case study](todo), we will guide you through an implementation that visualizes live data from an API using a Leaflet map. 
 
 
 ### Leaflet
@@ -453,7 +467,7 @@ Downloads, tutorials & documentations: [leafletjs.com](https://leafletjs.com/)
 	
 	Some of the map providers (e.g., OpenStreetMap, Stamen) made their data completely available for free, while others require the registration of an API key (Google, MapBox, ...) and charge fees after exceeding a specific limit.
 
-	![Tile Providers](map_tile_providers.png?raw=true "Tile Providers")
+	![Tile Providers](images/map_tile_providers.png?raw=true "Tile Providers")
 
 * We can add a marker with the following line of code:
 	
@@ -472,7 +486,9 @@ Downloads, tutorials & documentations: [leafletjs.com](https://leafletjs.com/)
 		.addTo(map);
 	```
 	
-	![Leaflet Map](leaflet-map.png?raw=true "Leaflet Map")
+See the result and the full source code on [codesandbox](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/leaflet-basic-map).
+
+[![Codesandbox Leaflet Basic Map](images/codesandbox_leaflet-basic-map.png?raw=true "Codesandbox Leaflet Basic Map")](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/leaflet-basic-map)
 
 
 #### LayerGroups
@@ -514,7 +530,7 @@ const circle = L.circle([40.762188, -73.971606], {
 
 This piece of code creates a circle, centered at the *Four Seasons New York* with a radius of 500 meters.
 
-![Leaflet Map 2](leaflet-map-2.png?raw=true "Leaflet Map 2")
+![Leaflet Map 2](images/leaflet-map-2.png?raw=true "Leaflet Map 2")
 
 We can add a polygon similarly and just need to specify the corner points as a list of latitude-longitude pairs:
 
@@ -542,7 +558,7 @@ polygon.bindPopup("SoHo, Manhattan");
 
 This was just a small example to help you get started with Leaflet. The library provides many more features and allows you to create powerful applications, especially if it is linked to D3 or other visualization components.
 
-![Leaflet Map 3](leaflet-map-3.png?raw=true "Leaflet Map 3")
+![Leaflet Map 3](images/leaflet-map-3.png?raw=true "Leaflet Map 3")
 
 #### GeoJSON layer
 
@@ -574,8 +590,9 @@ function styleBorough(feature) {
 
 If you want to add popups to each feature of a GeoJSON layer, you have to loop through them too. Similar to `style`, Leaflet provides the option `onEachFeature` that gets called on each feature before adding it to the map.
 
-![Leaflet Map 4](leaflet-map-4.png?raw=true "Leaflet Map 4")
+See the full example on [codesandbox](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/leaflet-geojson-layer).
 
+[![Codesandbox Leaflet GeoJSON Layer](images/codesandbox_leaflet-geojson-layer.png?raw=true "Codesandbox Leaflet GeoJSON Layer")](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/leaflet-geojson-layer)
 
 ---
 

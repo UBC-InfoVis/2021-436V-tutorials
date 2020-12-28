@@ -103,7 +103,7 @@ We will use D3 to bind data values to visual marks and channels on a web page. D
 
 *Result:*
 
-![SVG Example](svg-examples.png?raw=true "SVG Example")
+![SVG Example](images/svg-examples.png?raw=true "SVG Example")
 
 ## 3. <a name="add-to-dom">Adding a DOM Element with D3</a>
 
@@ -115,7 +115,7 @@ The following example consists of only one line of JS code. We use D3 to add a p
 d3.select("body").append("p").text("Hello World!");
 ```
 
-![D3 - Add element to DOM](d3-hello-world.png?raw=true "D3 - Add element to DOM")
+![D3 - Add element to DOM](images/d3-hello-world.png?raw=true "D3 - Add element to DOM")
 
 Before going into further details we want to introduce (or remind you of) the JS concept of **method chaining**:
 
@@ -179,7 +179,7 @@ const p = d3.select('body').selectAll('p')
 
 *Result:*
 
-![D3 - Bind Data 1](d3_bind_dom_elements.png?raw=true "D3 - Bind Data 1")
+![D3 - Bind Data 1](images/d3_bind_dom_elements.png?raw=true "D3 - Bind Data 1")
 
 
 1. `.select('body')` Reference to the target container.
@@ -227,7 +227,7 @@ const p = d3.select('body').selectAll('p')
 
 *Result:*
 
-![D3 - Bind Data 2](d3_bind_dom_elements_2.png?raw=true "D3 - Bind Data 2")
+![D3 - Bind Data 2](images/d3_bind_dom_elements_2.png?raw=true "D3 - Bind Data 2")
 
 In comparison, an ordinary JS function looks like the following code below. It has a function name, an input and an output variable. If the function name is missing, then it is called an *anonymous function*.
  
@@ -290,7 +290,7 @@ let p = d3.select('body').selectAll('p')
 
 *Result:*
 
-![D3 - Bind Data 3](d3_bind_dom_elements_3.png?raw=true "D3 - Bind Data 3")
+![D3 - Bind Data 3](images/d3_bind_dom_elements_3.png?raw=true "D3 - Bind Data 3")
 
 Now we are in a good position to actually use SVG instead of simple HTML tags.
 
@@ -320,7 +320,7 @@ svg.selectAll('rect')
 
 *Result:*
 
-![D3 - Bind Data 4](d3_bind_svg_elements.png?raw=true "D3 - Bind Data 4")
+![D3 - Bind Data 4](images/d3_bind_svg_elements.png?raw=true "D3 - Bind Data 4")
 
 &nbsp;
 
@@ -358,7 +358,7 @@ Now, we highly recommend that you create your first D3 project and implement thi
 	
 *The result might look like the following:*
 	
-![D3 - Result Activity 1](d3_circle_activity.png?raw=true "Result Activity 1")
+![D3 - Result Activity 1](images/d3_circle_activity.png?raw=true "Result Activity 1")
 
 **Important notice:** This example is not intended to be a best practice example of how to work with D3 scales. It was designed to help you to get a better understanding of different basic concepts in D3.
 
@@ -435,7 +435,7 @@ console.log('Do something else, without the data');
 
 The callback function, the inner function of `d3.csv()`, is called only after the dataset has been fully loaded into browser memory. In the meantime other scripts are executed.
 
-![D3 - Data Loading 1](d3_async_data_loading.png?raw=true "Data Loading 1")
+![D3 - Data Loading 1](images/d3_async_data_loading.png?raw=true "Data Loading 1")
 
 
 You might have noticed that each value of the CSV file is stored as a string, including numerical values. We need to convert all numerical values to *numbers*, or otherwise you will see unexpected behavior when making calculations.
@@ -503,7 +503,7 @@ d.age = +d.age;
 
 *Your result should look similar to this screenshot:*
 
-![Activity 2 Result](d3_map_activity.png?raw=true "Activity 2 Result")
+![Activity 2 Result](images/d3_map_activity.png?raw=true "Activity 2 Result")
 
 Later in this course, you will also learn how to create interactive maps.
 

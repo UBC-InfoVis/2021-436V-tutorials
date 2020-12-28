@@ -24,7 +24,7 @@ We will first walk through a very basic mechanism to link two charts. This is go
 
 We want to visualize hiking trails near Vancouver, as illustrated in the figure below. The chart on the left shows a scatter plot and the difficulty level (*easy*, *intermediate*, *difficult*) is color-coded. The number of hikes in these three categories is not immediately obvious without counting each dot. For this purpose, we add a bar chart that can simultaneously serve as a filter. When users click on one of the bars, the data in the scatter plot is filtered accordingly.
 
-![D3 Basic Linking Example](linked_charts_basic.png?raw=true "D3 Basic Linking Example")
+![D3 Basic Linking Example](images/linked_charts_basic.png?raw=true "D3 Basic Linking Example")
 
 In the following, we describe one possible implementation workflow:
 
@@ -118,7 +118,7 @@ In the following, we describe one possible implementation workflow:
 
 You can see the final source code on [codesandbox](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-linked-charts-basic)
 
-[![D3 Basic Linking Example](codesandbox_d3-linked-charts-basic.png?raw=true "D3 Basic Linking Example")](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-linked-charts-basic)
+[![D3 Basic Linking Example](images/codesandbox_d3-linked-charts-basic.png?raw=true "D3 Basic Linking Example")](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-linked-charts-basic)
 
 &nbsp;
 
@@ -185,7 +185,7 @@ In the following, we describe how to modify the previous example in order to use
 	```
 You can see the final source code on [codesandbox](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-linked-charts-dispatcher)
 
-[![D3 Linking With Dispatcher Example](codesandbox_d3-linked-charts-dispatcher.png?raw=true "D3 Linking With Dispatcher Example")](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-linked-charts-dispatcher)
+[![D3 Linking With Dispatcher Example](images/codesandbox_d3-linked-charts-dispatcher.png?raw=true "D3 Linking With Dispatcher Example")](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-linked-charts-dispatcher)
 	
 &nbsp;
 
@@ -193,11 +193,11 @@ You can see the final source code on [codesandbox](https://githubbox.com/UBC-Inf
 
 Brushing is a technique to interactively select a region or a set of data points in a visualization. In combination with linking, where changes are automatically dispatched to linked visualizations, we can create powerful multi-view visualizations. A popular use case is the *focus + context* visualization shown below. The *context view* provides a global perspective at reduced detail and allows users to brush. The *focus view* shows the selected data points, for example, a specific time period, in greater detail.
 
-![D3 Focus + Context](focus_context.png?raw=true "D3 Focus + Context")
+![D3 Focus + Context](images/focus_context.png?raw=true "D3 Focus + Context")
 
 There are three types of brushes in D3 for brushing along the x, y dimensions, or both: `d3.brushX` (e.g., select time period), `d3.brushY` (e.g., select range in parallel coordinates plot), and `d3.brush` (e.g., select points in a scatter plot matrix). Each brush defines a selection in screen coordinates.
 
-![D3 Brushing & Linking](d3_brush.png?raw=true "D3 Brushing & Linking")
+![D3 Brushing & Linking](images/d3_brush.png?raw=true "D3 Brushing & Linking")
 
 In the following code snippets we show you how to use `d3.brushX` but it is straightforward to adopt the workflow for other brush types. First, we need to define a scale function:
 
@@ -249,7 +249,7 @@ function brushended({selection}) {
 
 You can see the complete example of our focus+context visualization using `d3.brushX` on [codesandbox](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-brushing-linking). The visualization shows the S&P 500 Index over the last few years and users can brush along the x-axis to select a specific time window. We also demonstrate how to set a default brush programmatically with `brush.move`.  We decided to create both views within a single JS class because they share the same data and many parameters but it would be also perfectly correct to create two independent components and use `d3.dispatch` to link them.
 
-[![D3 Brushing & Linking Example](codesandbox_d3-brushing-linking.png?raw=true "D3 Brushing & Linking Example")](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-brushing-linking)
+[![D3 Brushing & Linking Example](images/codesandbox_d3-brushing-linking.png?raw=true "D3 Brushing & Linking Example")](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-brushing-linking)
 
 &nbsp;
 
@@ -268,7 +268,7 @@ In the following, we introduce two more shape generators: *symbols* and *stacks*
 
 Symbols are commonly used in scatter plots as a channel to encode categorical attributes and can be created in D3 using the shape generator function `d3.symbol()`. For example, we can generate the SVG path of a diamond symbol with `d3.symbol().type(d3.symbolDiamond)()`.
 
-![D3 Symbols](d3-symbols.png?raw=true "D3 Symbols")
+![D3 Symbols](images/d3-symbols.png?raw=true "D3 Symbols")
 
 **Example usage** in a scatter plot that uses three different symbols for the categories *"Easy"*, *"Intermediate"*, and *"Difficult"*.
 
@@ -300,7 +300,7 @@ Symbols are commonly used in scatter plots as a channel to encode categorical at
 	
 See the full source code of this example on [codesandbox](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-scatter-plot-shapes).
 
-[![Scatterplot with shapes](codesandbox_d3-scatter-plot-shapes.png?raw=true "Scatterplot with shapes")](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-scatter-plot-shapes)
+[![Scatterplot with shapes](images/codesandbox_d3-scatter-plot-shapes.png?raw=true "Scatterplot with shapes")](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-scatter-plot-shapes)
 
 #### Stacks
 
@@ -333,7 +333,7 @@ console.log(stackedData)
 
 When we print the data, we can see the computed values: milk (0 to 10, 0-12, 0-11) and water (10-14, 12-18, 11-18).
 
-![Stacked data](stacked_data.png?raw=true "Stacked data")
+![Stacked data](images/stacked_data.png?raw=true "Stacked data")
 
 We can now use this data to draw, for example, a stacked bar chart. Similar to an ordinary bar chart, you need to create x- and y-scales first. The x-position and width is based on the year (`d.data.year`), and the y-position and height of each rectangle is based on the computed layers (stored in `d[0]` and `d[1]`). We add a CSS class to each SVG group to adjust the colour. This could be also done in SVG using the `fill` attribute.
 
@@ -353,11 +353,11 @@ const rectangles = svg.selectAll('category')
 
 You can look at the full example on [codesandbox](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-stacked-bar-chart):
 
-[![Stacked Bar Chart](codesandbox_d3-stacked-bar-chart.png?raw=true "Stacked Bar Chart")](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-stacked-bar-chart)
+[![Stacked Bar Chart](images/codesandbox_d3-stacked-bar-chart.png?raw=true "Stacked Bar Chart")](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-stacked-bar-chart)
 
 We have also created an interactive stacked area chart using `d3.stack()` that you should check out on [codesandbox](https://github.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-stacked-area-chart):
 
-[![Stacked Area Chart](codesandbox_d3-stacked-area-chart.png?raw=true "Stacked Area Chart")](https://github.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-stacked-area-chart)
+[![Stacked Area Chart](images/codesandbox_d3-stacked-area-chart.png?raw=true "Stacked Area Chart")](https://github.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-stacked-area-chart)
 
 ---
 

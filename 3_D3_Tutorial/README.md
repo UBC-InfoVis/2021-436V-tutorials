@@ -29,7 +29,7 @@ This means that we are merging new data with existing elements. In the merging p
 - Update: What happens to existing elements which have changed?
 - Exit: What happens to existing DOM elements which are not associated with data anymore?
 
-![Data Join](enter_update_exit_sketch.jpg?raw=true "Data Join")
+![Data Join](images/enter_update_exit_sketch.jpg?raw=true "Data Join")
 
 To take care of the enter-update-exit pattern, we have to change the sequence of our D3 code a little bit. Instead of chaining everything together, some code snippets must be separated.
 
@@ -112,7 +112,7 @@ function updateChart(data) {
 ```
 *Result:*
 
-![Update Pattern Example](data_join_example.png?raw=true "Update Pattern Example")
+![Update Pattern Example](images/data_join_example.png?raw=true "Update Pattern Example")
 
 ### Key function
 
@@ -136,7 +136,7 @@ let circle = svg.selectAll("circle")
 	.data([10, 15]);
 ```
 
-![Key Function (1)](key-function-1.png?raw=true "Key Function (1)")
+![Key Function (1)](images/key-function-1.png?raw=true "Key Function (1)")
 
 The index will be used again as the default key to match the new data to the actual circles. There are three circles on the webpage and two items in the new dataset. Therefore, the last circle will be removed and the other two circles will be bound to the new data.
 
@@ -157,7 +157,7 @@ circle = svg.selectAll("circle")
 
 In the above example, the key function allows us to map the data value directly instead of the default by-index behavior:
 
-![Key Function (2)](key-function-2.png?raw=true "Key Function (2)")
+![Key Function (2)](images/key-function-2.png?raw=true "Key Function (2)")
 
 This means, we can update the appropriate elements without having to delete and re-add elements. We can update them in place!
 
@@ -312,7 +312,7 @@ d3.select('#radius-slider').on('input', function() {
 
 *Result*
 
-![Change radius via slider](input_slider_radius_example.gif?raw=true "Change radius via slider")
+![Change radius via slider](images/input_slider_radius_example.gif?raw=true "Change radius via slider")
 
 You can see the complete example on [codesandbox](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-change-radius-with-slider) and change the code interactively.
 
@@ -366,7 +366,7 @@ d3.selectAll('circle')
 	.duration(3000)
 	.attr('fill', 'blue');
 ```
-![Transition with duration](transition-duration.gif?raw=true "Transition with duration")
+![Transition with duration](images/transition-duration.gif?raw=true "Transition with duration")
 
 If you need to delay an animation, you can add the `delay()` method right after `transition()`.
 
@@ -441,21 +441,21 @@ Example implementation workflow:
 
 [Sortable bar chart with tooltips](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-interactive-bar-chart)
 
-![Interactive Bar Chart](interactive_bar_chart_example.gif?raw=true "Interactive Bar Chart")
+![Interactive Bar Chart](images/interactive_bar_chart_example.gif?raw=true "Interactive Bar Chart")
 
-[![Codesandbox: Interactive Bar Chart](codesandbox_d3-interactive-bar-chart.png?raw=true "Codesandbox: Interactive Bar Chart")](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-interactive-bar-chart)
+[![Codesandbox: Interactive Bar Chart](images/codesandbox_d3-interactive-bar-chart.png?raw=true "Codesandbox: Interactive Bar Chart")](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-interactive-bar-chart)
 
 [Interactive scatter plot with filters and tooltips](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-interactive-scatter-plot)
 
-![Interactive Scatter Plot](interactive_scatter_plot_example.gif?raw=true "Interactive Scatter Plot")
+![Interactive Scatter Plot](images/interactive_scatter_plot_example.gif?raw=true "Interactive Scatter Plot")
 
-[![Codesandbox: Interactive Scatter Plot](codesandbox_d3-interactive-scatter-plot.png?raw=true "Codesandbox: Interactive Scatter Plot")](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-interactive-scatter-plot)
+[![Codesandbox: Interactive Scatter Plot](images/codesandbox_d3-interactive-scatter-plot.png?raw=true "Codesandbox: Interactive Scatter Plot")](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-interactive-scatter-plot)
 
 ### Tooltips for path elements (fuzzy position)
 
 Until now, we have created tooltips only for basic SVG elements, such as circles or rectangles. When users hover over a specific mark, we can easily get the underlying data and show it at that position. However, when we create line or area charts (SVG paths), we typically want to allow users to hover anywhere over a path and see a tooltip, and not just at a few specific points.
 
-![Tooltip position](tooltip_position.png?raw=true "Tooltip position")
+![Tooltip position](images/tooltip_position.png?raw=true "Tooltip position")
 
 We illustrate the mechanism for showing tooltips at fuzzy positions based on a line chart (`date` on x-axis, `stock price` on y-axis). 
 
@@ -513,9 +513,9 @@ We illustrate the mechanism for showing tooltips at fuzzy positions based on a l
 	
 See the complete interactive line chart example on [codesandbox](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-interactive-line-chart).
 
-![Interactive line chart](interactive_line_chart_example.gif?raw=true "Interactive line chart")
+![Interactive line chart](images/interactive_line_chart_example.gif?raw=true "Interactive line chart")
 
-[![Codesandbox: Interactive Line Chart](codesandbox_d3-interactive-line-chart.png?raw=true "Codesandbox: Interactive Line Chart")](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-interactive-line-chart)
+[![Codesandbox: Interactive Line Chart](images/codesandbox_d3-interactive-line-chart.png?raw=true "Codesandbox: Interactive Line Chart")](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-interactive-line-chart)
 
 ---
 

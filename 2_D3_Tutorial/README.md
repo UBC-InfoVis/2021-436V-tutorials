@@ -33,7 +33,7 @@ const group = svg.append("g")
 	.attr("transform", "translate(70, 50)");
 ```
 
-![SVG Groups](svg-groups.png?raw=true "SVG Groups")
+![SVG Groups](images/svg-groups.png?raw=true "SVG Groups")
 
 
 
@@ -50,7 +50,7 @@ This is where ***scales*** come in. We specify a fixed SVG drawing space on our 
 
 *Example:* We want to visualize the monthly sales of an ice cream store. The input data are numbers between 0 and 20,000 USD and the maximum height of the chart is 400px. We take an input inverval (called ***domain***) and transform it into a new output interval (called ***range***).
 
-![Scales](input_domain_output_scale.png?raw=true "Scales")
+![Scales](images/input_domain_output_scale.png?raw=true "Scales")
 
 We could transform the numbers from one domain into the other manually but what if the sales rise above 20.000 and the interval changes? That means a lot of manual work. Thankfully, we can use D3's built-in scaling methods to do this automatically.
 
@@ -108,7 +108,7 @@ const months = quarterlyReport.map(d => d.month);
 months // Returns: ['May', 'June', 'July', 'August']
 ```
 
-![Ordinal scale bands](ordinal_scale_band.png?raw=true "Ordinal scale bands")
+![Ordinal scale bands](images/ordinal_scale_band.png?raw=true "Ordinal scale bands")
 
 For example, D3's ordinal scales can be very useful to simplify the positioning of bars in a bar chart, as you will see very soon.
 
@@ -140,7 +140,7 @@ colorPalette("Chocolate") // Returns: #2ca02c
 
 We can then bind the colour scale to data values and render it:
 
-![D3 Ordinal Color Scale](color_scale_ordinal.png?raw=true)
+![D3 Ordinal Color Scale](images/color_scale_ordinal.png?raw=true)
 
 
 Instead of using a fixed range of colours, you can use linear scale functions to create colour gradients: 
@@ -152,7 +152,7 @@ const linearColor = d3.scaleLinear()
 
 linearColor(0) // Returns: #90ee90
 ```
-![D3 Linear Color Scale](color_scale_linear.png?raw=true "Linear Color Scale")
+![D3 Linear Color Scale](images/color_scale_linear.png?raw=true "Linear Color Scale")
 
 Read more about [D3 colour scales](https://github.com/d3/d3-scale-chromatic/blob/master/README.md) or [other scale functions](https://github.com/d3/d3-scale), such as logarithmic or diverging scales.
 
@@ -306,7 +306,7 @@ function showBarChart(data) {
 
 **Intermediate result:**
 
-![D3 Bar Chart Draft](d3_bar_chart_1.png?raw=true "D3 Bar Chart Draft")
+![D3 Bar Chart Draft](images/d3_bar_chart_1.png?raw=true "D3 Bar Chart Draft")
 
 The current chart does not look correct. We use `.axisBottom()` which places the tick labels below the x-axis but it is still shown at the top of the SVG area.
 
@@ -325,7 +325,7 @@ Positioning the axes or defining the correct margins between components can be c
 
 > "By convention, margins in D3 are specified as an object with top, right, bottom and left properties. Then, the outer size of the chart area, which includes the margins, is used to compute the inner size available for graphical marks by subtracting the margins." *(Mike Bostock)* &raquo; [See more details](https://observablehq.com/@d3/margin-convention)
 
-![D3 Margin Convention](margin-convention.png?raw=true "Margin Convention")
+![D3 Margin Convention](images/margin-convention.png?raw=true "Margin Convention")
 
 #### Other chart refinements
 
@@ -415,7 +415,7 @@ function showBarChart(data) {
 
 *Result:*
 
-![D3 Bar Chart](d3_bar_chart_2.png?raw=true "D3 Bar Chart")
+![D3 Bar Chart](images/d3_bar_chart_2.png?raw=true "D3 Bar Chart")
 
 
 &nbsp;
@@ -432,7 +432,7 @@ You should always try to split a complex problem into smaller, easier-to-tackle 
 
 We recommend creating a JavaScript class for each visualization chart type that is used following this pipeline:
 
-![D3 Components - Pipeline](d3_components_overview.png?raw=true "D3 Components - Pipeline")
+![D3 Components - Pipeline](images/d3_components_overview.png?raw=true "D3 Components - Pipeline")
 
 ### Function structure of an individual class
 
@@ -513,7 +513,7 @@ renderVis() {
 ### Breakdown of project into classes
 
 In this example, there are two chart types, stacked area chart and timeline, and so there are two class files, `stackedAreaChart.js` and `timeline.js`
-![Project overview](d3_components_overview_2.png?raw=true "Project overview")
+![Project overview](images/d3_components_overview_2.png?raw=true "Project overview")
 
 The divide-and-conquer concept (i.e., splitting up a complex problem into various sub-tasks) also applies to the overall file structure of your project.
 
@@ -526,11 +526,11 @@ This methodology will become very helpful for developing larger systems and more
 
 We have used this approach to turn the previous bar chart example into a resuable class. You can look at the complete example on [codesandbox](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-static-bar-chart) where you can also play around with different parameters and styles.
 
-[![D3 Bar Chart](codesandbox_d3-static-bar-chart.png?raw=true "D3 Bar Chart")](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-static-bar-chart)
+[![D3 Bar Chart](images/codesandbox_d3-static-bar-chart.png?raw=true "D3 Bar Chart")](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-static-bar-chart)
 
 You should also check out our scatter plot example on [codesandbox](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-static-scatter-plot).
 
-[![Static scatter plot](codesandbox_d3-static-scatter-plot.png?raw=true "Static scatter plot")](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-static-scatter-plot)
+[![Static scatter plot](images/codesandbox_d3-static-scatter-plot.png?raw=true "Static scatter plot")](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-static-scatter-plot)
 	
 &nbsp;
 
@@ -546,7 +546,7 @@ For creating line and area charts we want to use SVG's [path](https://www.w3scho
 </svg>
 ```
 
-![SVG path](svg_path.png?raw=true "SVG path")
+![SVG path](images/svg_path.png?raw=true "SVG path")
 
 Fortunately, D3 provides the `d3.line()` and `d3.area()` functions, allowing us to draw a line and area charts more efficiently. Basically these functions take our data and convert it into the SVG path coordinates we wrote above.
 
@@ -567,7 +567,7 @@ d3.select('svg').append('path')
     .attr('fill', 'none');
 ```
 
-![D3 SVG path](d3_svg_path.png?raw=true "D3 SVG path")
+![D3 SVG path](images/d3_svg_path.png?raw=true "D3 SVG path")
 
 The *area generator* works similar. An area is defined by two polylines and we need to specify differing y-values (`y0` and `y1`). Most commonly, `y0` is defined as a constant representing zero. The first line (the topline) is defined by `y1` and is rendered first; the second line (the baseline) is defined by y0 and is rendered second. The two lines typically share the same x-values.
 
@@ -587,12 +587,12 @@ d3.select('svg').append('path')
   .attr('fill', 'green');
 ```
 
-![D3 SVG area path](d3_svg_area_path.png?raw=true "D3 SVG area path")
+![D3 SVG area path](images/d3_svg_area_path.png?raw=true "D3 SVG area path")
 
 
 Result if we change the baseline y-position: e.g., `.y0(150)`
 
-![D3 SVG area path 2](d3_svg_area_path_2.png?raw=true "D3 SVG area path 2")
+![D3 SVG area path 2](images/d3_svg_area_path_2.png?raw=true "D3 SVG area path 2")
 
 You can use D3's `.curve()` to interpolate the curve between points, for example, to smoothen the curve or to produce a step function, as shown below. Note: Use curve interpolation very carefully as it may misrepresent the actual data!
 
@@ -606,7 +606,7 @@ const area = d3.area()
 // ...
 ```
 
-![D3 SVG area path 3](d3_svg_area_path_smooth.png?raw=true "D3 SVG area path 3")
+![D3 SVG area path 3](images/d3_svg_area_path_smooth.png?raw=true "D3 SVG area path 3")
 
 ```javascript
 const line = d3.line()
@@ -615,7 +615,7 @@ const line = d3.line()
   .curve(d3.curveStep);
 ```
 
-![D3 SVG line path step](d3_svg_line_path_step.png?raw=true "D3 SVG line path step")
+![D3 SVG line path step](images/d3_svg_line_path_step.png?raw=true "D3 SVG line path step")
 
 &raquo; [Compare different curve interpolation types interactively here.](http://bl.ocks.org/d3indepth/b6d4845973089bc1012dec1674d3aff8)
 
@@ -623,7 +623,7 @@ const line = d3.line()
 
 In this example, we used a line and area generator. You can look at the full source code on [codesandbox](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-static-area-chart). We will extend this visualization in later tutorials by adding interactive tooltips and filters.
 
-[![Static area chart](codesandbox_d3-static-area-chart.png?raw=true "Static area chart")](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-static-area-chart)
+[![Static area chart](images/codesandbox_d3-static-area-chart.png?raw=true "Static area chart")](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-static-area-chart)
 
 
 ---
