@@ -4,12 +4,12 @@ In this tutorial, you will learn how to create basic chart types, such as bar ch
 
 #### Contents
 
-1. [More D3 basics](#more-d3-basics)
-2. [Making a bar chart](#more-d3-basics)
-3. [Reusable D3 components](#reusable-d3-components)
-4. [Making line and area charts](#making-line-and-area-charts)
+1. [More D3 Basics](#more-d3-basics)
+2. [Making a Bar Chart](#making-a-bar-chart)
+3. [Reusable D3 Components](#reusable-d3-components)
+4. [Making Line and Area Charts](#making-line-and-area-charts)
 
-## 1. More D3 Basics
+## <a name="more-d3-basics">1. More D3 Basics</a>
 
 ### SVG groups
 
@@ -210,7 +210,7 @@ You can read more about D3 axis, ticks, and tick formatting in the [D3 documenta
 
 &nbsp;
 
-## 2. Making a Bar Chart
+## 2. <a name="making-a-bar-chart">Making a Bar Chart</a>
 
 Now, we know most of the concepts to create a D3 bar chart with a categorical y-axis and a linear x-axis. First, we need to download the D3 library and create a simple HTML page. **Important:** A local web server is necessary because we load data from a CSV file; otherwise we will get a browser error.
 
@@ -420,7 +420,7 @@ function showBarChart(data) {
 
 &nbsp;
 
-## 3. Reusable D3 Components *(ES6 Classes)*
+## 3. <a name="reusable-d3-components">Reusable D3 Components</a> *(ES6 Classes)*
 
 Thinking about the structure of your project early on can save you a lot of time and will make your implementation more robust, extensible and reusable. This becomes particularly important when we create interactive visualizations where the underlying data changes or small multiple displays.
 
@@ -524,17 +524,17 @@ This methodology will become very helpful for developing larger systems and more
 
 ### Examples
 
-We have used this approach to turn the previous bar chart example into a resuable class. You can look at the complete example on [codesandbox](todo) where you can also play around with different parameters and styles.
+We have used this approach to turn the previous bar chart example into a resuable class. You can look at the complete example on [codesandbox](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-static-bar-chart) where you can also play around with different parameters and styles.
 
-[![D3 Bar Chart](codesandbox_d3-static-bar-chart.png?raw=true "D3 Bar Chart")](todo)
+[![D3 Bar Chart](codesandbox_d3-static-bar-chart.png?raw=true "D3 Bar Chart")](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-static-bar-chart)
 
-You should also check out our scatter plot example on [codesandbox](todo).
+You should also check out our scatter plot example on [codesandbox](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-static-scatter-plot).
 
-[![Static scatter plot](codesandbox_d3-static-scatter-plot.png?raw=true "Static scatter plot")](todo)
+[![Static scatter plot](codesandbox_d3-static-scatter-plot.png?raw=true "Static scatter plot")](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-static-scatter-plot)
 	
 &nbsp;
 
-## 4. Making line and area charts
+## 4. <a name="making-line-and-area-charts">Making Line and Area Charts</a>
 
 In the last tutorial, we briefly showed you how to create basic shape elements with SVG (rectangles, circles, text, straight lines) and we used some of those elements to build a bar chart and a scatter plot.
 
@@ -621,9 +621,9 @@ const line = d3.line()
 
 ### Example
 
-In this example, we used a line and area generator. You can look at the full source code on [codesandbox](todo). We will extend this visualization in later tutorials by adding interactive tooltips and filters.
+In this example, we used a line and area generator. You can look at the full source code on [codesandbox](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-static-area-chart). We will extend this visualization in later tutorials by adding interactive tooltips and filters.
 
-[![Static area chart](codesandbox_d3-static-area-chart.png?raw=true "Static area chart")](todo)
+[![Static area chart](codesandbox_d3-static-area-chart.png?raw=true "Static area chart")](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-static-area-chart)
 
 
 ---

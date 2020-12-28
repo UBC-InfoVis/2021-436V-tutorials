@@ -5,13 +5,13 @@ In this tutorial, we introduce the enter-update-exit pattern which is a key conc
 #### Tutorial Outline
 
 1. [Enter, Update, Exit](#enter-update-exit)
-2. [Making a bar chart](#more-d3-basics)
+2. [Updating Scales and Axes](#updating-scales-axes)
 3. [Reusable D3 components](#reusable-d3-components)
-4. [Making line and area charts](#making-line-and-area-charts)
+4. [Animated Transitions](#animated-transitions)
 5. [Tooltips](#tooltips)
 
 
-## 1. Enter, Update, Exit 
+## 1. <a name="enter-update-exit">Enter, Update, Exit</a> 
 
 By now you have learned how to load external data and how to map it to visual elements, for example, to create a bar chart. But very often we have to deal with changing data or a continuous data stream rather than a static CSV file. Dynamic data often requires more sophisticated user interfaces that allow users to interact with the data (e.g., filter and sort).
 
@@ -189,7 +189,7 @@ You can also extend the `join()` statement to control what happens on enter, upd
 
 &nbsp; 
 
-## 2. Updating Scales and Axes
+## 2. <a name="updating-scales-axes">Updating Scales and Axes</a>
 
 Whenever you get new data or existing data changes, you need to recalibrate your scales, otherwise elements will get clipped, or the visualization will show the wrong information. Appending axes multiple times will lead to overlapping tick labels and make it unreadable.
 
@@ -255,7 +255,7 @@ class MyChart {
 
 &nbsp;
 
-## 3. Handling User Input
+## 3. <a name="handling-user-input">Handling User Input</a>
 
 With D3 visualizations, you can leverage the full power of web technologies to create interactive visualizations. For example, you can add HTML forms to enable user input or bind event listeners directly to SVG elements.
 
@@ -314,6 +314,8 @@ d3.select('#radius-slider').on('input', function() {
 
 ![Change radius via slider](input_slider_radius_example.gif?raw=true "Change radius via slider")
 
+You can see the complete example on [codesandbox](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-change-radius-with-slider) and change the code interactively.
+
 This was a very simple example. We have the following recommendations when you use the previously introduced class structure for visualizations:
 
 * Add global event listeners (e.g., checkboxes, sliders, ...) in `main.js`. The advantage is that `main.js` acts as a controller and you can trigger changes in multiple visualization components.
@@ -336,7 +338,7 @@ Alternatively, you could also use [jQuery](http://jquery.com/) or other JS libra
 
 &nbsp;
 
-## 4. Animated Transitions
+## 4. <a name="animated-transitions">Animated Transitions</a>
 
 By now, you should have a solid understanding of how to select elements and update various types of SVG attributes:
 
@@ -392,7 +394,7 @@ data analysis tasks. In this case, use a static comparison of several charts/ima
 
 &nbsp;
 
-## 5. Tooltips
+## 5. <a name="tooltips">Tooltips</a>
 
 ### HTML tooltips
 
@@ -437,25 +439,25 @@ Example implementation workflow:
 
 #### Examples
 
-[Sortable bar chart with tooltips](todo)
+[Sortable bar chart with tooltips](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-interactive-bar-chart)
 
 ![Interactive Bar Chart](interactive_bar_chart_example.gif?raw=true "Interactive Bar Chart")
 
-[![Codesandbox: Interactive Bar Chart](codesandbox_d3-interactive-bar-chart.png?raw=true "Codesandbox: Interactive Bar Chart")](todo)
+[![Codesandbox: Interactive Bar Chart](codesandbox_d3-interactive-bar-chart.png?raw=true "Codesandbox: Interactive Bar Chart")](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-interactive-bar-chart)
 
-[Interactive scatter plot with filters and tooltips](todo)
+[Interactive scatter plot with filters and tooltips](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-interactive-scatter-plot)
 
 ![Interactive Scatter Plot](interactive_scatter_plot_example.gif?raw=true "Interactive Scatter Plot")
 
-[![Codesandbox: Interactive Scatter Plot](codesandbox_d3-interactive-scatter-plot.png?raw=true "Codesandbox: Interactive Scatter Plot")](todo)
+[![Codesandbox: Interactive Scatter Plot](codesandbox_d3-interactive-scatter-plot.png?raw=true "Codesandbox: Interactive Scatter Plot")](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-interactive-scatter-plot)
 
 ### Tooltips for path elements (fuzzy position)
 
-Until now, we have created tooltips only for basic SVG elements such circles or rectangles. When users hover over a specific mark, we can easily get the underlying data and show it at that position. However, when we create line or area charts (SVG paths), we typically want to allow users to hover anywhere over a path and see a tooltip, and not just at a few specific points.
+Until now, we have created tooltips only for basic SVG elements, such as circles or rectangles. When users hover over a specific mark, we can easily get the underlying data and show it at that position. However, when we create line or area charts (SVG paths), we typically want to allow users to hover anywhere over a path and see a tooltip, and not just at a few specific points.
 
 ![Tooltip position](tooltip_position.png?raw=true "Tooltip position")
 
-We illustrate the mechanism for showing tooltips at fuzzy positions based on a line chart (date on x-axis, stock price on y-axis). 
+We illustrate the mechanism for showing tooltips at fuzzy positions based on a line chart (`date` on x-axis, `stock price` on y-axis). 
 
 1. We add a tracking area that covers the whole chart. Whenever users place their mouse cursor inside this area, we want to show a tooltip. After every `mousemove` event we need to update the tooltip accordingly.
 
@@ -476,7 +478,7 @@ We illustrate the mechanism for showing tooltips at fuzzy positions based on a l
 	    })
 	```
 
-2. Get the x-position of the mouse cursor. We only want to show a stock price tooltip for a specific date and the y-position is not relevant in this case, but can be extracted similarly.
+2. Get the x-position of the mouse cursor using `d3.pointer()`. We only want to show a stock price tooltip for a specific date and the y-position is not relevant in this case, but can be extracted similarly.
 
 	```js
 	const xPos = d3.pointer(event, this)[0]; // First array element is x, second is y
@@ -509,11 +511,11 @@ We illustrate the mechanism for showing tooltips at fuzzy positions based on a l
 	
 	At the end we can display an HTML or SVG tooltip with the available mouse coordinates and the corresponding data.
 	
-See the complete interactive line chart example on [codesandbox](todo).
+See the complete interactive line chart example on [codesandbox](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-interactive-line-chart).
 
 ![Interactive line chart](interactive_line_chart_example.gif?raw=true "Interactive line chart")
 
-[![Codesandbox: Interactive Line Chart](codesandbox_d3-interactive-line-chart.png?raw=true "Codesandbox: Interactive Line Chart")](todo)
+[![Codesandbox: Interactive Line Chart](codesandbox_d3-interactive-line-chart.png?raw=true "Codesandbox: Interactive Line Chart")](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-interactive-line-chart)
 
 ---
 

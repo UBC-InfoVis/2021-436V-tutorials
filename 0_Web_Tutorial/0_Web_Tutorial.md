@@ -7,13 +7,14 @@ This tutorial will serve to refresh you in case you're rusty, for the prerequisi
 
 #### Tutorial Outline
 
-1. HTML: Set up and modify HTML documents
-2. CSS: Define CSS rules to style web pages (with CSS selectors)
-3. JS: Solid understanding of JavaScript fundamentals
-4. Tools: Use several web development tools (code editor, local webserver, web browser developer tools)
-5. Git: Use Git (required for submitting assignments and project milestones)
+1. [HTML: Set up and modify HTML documents](#html)
+2. [CSS: Define CSS rules to style web pages (with CSS selectors)](#css)
+3. [JS: Solid understanding of JavaScript fundamentals](#js)
+4. [Tools: Use several web development tools (code editor, local webserver, web browser developer tools)](#tools)
+5. [Git: Use Git (required for submitting assignments and project milestones)](#git)
+6. [HTML & CSS Frameworks](#frameworks)
 
-## 1. HTML
+## 1. <a name="html">HTML</a>
 
 [HTML](https://www.w3schools.com/html/) (Hypertext Markup Language) is used to structure content for web browsers. It enables us to differentiate between content and structure of a document. A comprehensive and well structured list of HTML elements can be found at [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element). We will use the latest evolution of HTML referred to as [HTML5](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5).
 
@@ -67,7 +68,7 @@ Elements can be assigned multiple classes, simply by separating them with a spac
 The Document Object Model (DOM) is a programming interface for HTML, XML, and SVG documents. It provides a hierarchical (tree-structured) representation of the document and it defines a way that the structure can be accessed from programs so that they can change the document structure, style, and content. Or in other words, it is a model that the browser generates, when it parses the HTML document. We will later use JS/D3 to add to and manipulate the DOM dynamically.
 
 
-## 2. CSS
+## 2. <a name="css">CSS</a>
 
 With HTML you define the structure and content of the page and with CSS you set its style - things like fonts, colors, margins, backgrounds, and so on.
 
@@ -148,7 +149,7 @@ As you can see in the example below, IDs are preceded with a hash mark (*#articl
 
 ![CSS Example 2 Result](css-example-2.png?raw=true "CSS Example 2 Result")
 
-## 3. JavaScript (JS)
+## 3. <a name="js">JavaScript (JS)</a>
 
 *From now on, and in all upcoming tutorials and assignments we will use the common abbreviation JS for the term JavaScript.*
 
@@ -504,7 +505,7 @@ expensiveProducts // Returns: [{ name: "laptop", price: 1600 }, { name: "phone",
 
 *You will learn more about other useful array manipulation methods (e.g. ```join()```, ```reduce()```, ...) in our D3 tutorials later.*
 
-## 4. Tools
+## 4. <a name="tools">Tools</a>
 
 ### Code editor
 
@@ -547,7 +548,7 @@ If you haven't done already, it's now time to open the developer tools in your b
 
 **From now on, whenever you are programming HTML, CSS, JS, or D3, you should always have the developer console open. This helps you in debugging and figuring out what is going on in the code!**
 
-## 5. Use Git & Github
+## 5. <a name="git">Use Git & Github</a>
 
 We will use **git** repositories (via Github) for all programming assignments and project milestones.  You should already be well acquainted with the process and all necessary git commands from previous courses (see [Reid Holmes'
 CPSC 310 git tutorial](https://github.com/ubccpsc/310/blob/2019jan/resources/git.md) as a refresher).
@@ -580,7 +581,7 @@ Please check whether you have a SSH key generated already: there should be `id_r
 
 
 
-## 6. HTML & CSS Frameworks *(optional)*
+## 6. <a name="frameworks">HTML & CSS Frameworks</a> *(optional)*
 
 Rather than coding from scratch, HTML & CSS frameworks enable you to utilize ready-made blocks of code to help you get started. They give you a solid foundation for what a typical web project requires and usually they are also flexible enough for customization. Most of these frameworks provide some JS functionality as well.
 
@@ -588,7 +589,7 @@ Rather than coding from scratch, HTML & CSS frameworks enable you to utilize rea
 
 The question whether a framework can be useful largely depends on the individual project and the developer. Therefore, it is up to you to decide if you want to use it in your assignments or projects.
 
-Here is a summary of the main aspects of *Bootstrap*:
+Here is a summary of *Bootstrap*:
 
 * **Open source** HTML, CSS, and JS framework. 
 * Provides a **base styling** for common used HTML elements.

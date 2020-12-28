@@ -5,13 +5,13 @@ In this tutorial you will learn how to create your first D3 implementation. We w
 
 #### Tutorial Outline
 
-1. [D3 Project](todo)
-2. [A Brief Overview of SVG](todo)
-3. [Adding a DOM Element with D3](todo)
-4. [Binding Data to Visual Elements](todo)
+1. [D3 Project](#d3-project)
+2. [A Brief Overview of SVG](#svg-overview)
+3. [Adding a DOM Element with D3](#add-to-dom)
+4. [Binding Data to Visual Elements](#binding-data)
 
 
-## 1. D3 Project
+## 1. <a name="d3-project">D3 Project</a>
 
 D3 (Document-Driven-Data) is a powerful JS library for manipulating documents based on data.
 
@@ -65,7 +65,7 @@ Below, we update our HTML boilerplate code to include a reference to D3, to anot
 
 In this course, we will include JS files separately and do not use any build tools or JS module bundlers, such as [web pack](https://webpack.js.org/), to keep it simple.
 
-## 2. A Brief Overview of SVG
+## 2. <a name="svg-overview">A Brief Overview of SVG</a>
 
 We will use D3 to bind data values to visual marks and channels on a web page. D3's default rendering platform is [SVG](https://www.w3schools.com/graphics/svg_intro.asp) (Scalable Vector Graphics) that we will use throughout this course. D3 also supports [HTML Canvas](https://www.w3schools.com/html/html5_canvas.asp) which is useful for displaying a larger number of objects but has limited flexibility and, therefore, we will only briefly introduce it at the very end of the course. Here are some key facts about SVG:
 
@@ -105,7 +105,7 @@ We will use D3 to bind data values to visual marks and channels on a web page. D
 
 ![SVG Example](svg-examples.png?raw=true "SVG Example")
 
-## 3. Adding a DOM Element with D3
+## 3. <a name="add-to-dom">Adding a DOM Element with D3</a>
 
 Previusly, you may have already created dynamic content and added new elements to the DOM tree with plain JS or the jQuery library. Now, we will generate new page elements with D3. After loading the D3 library, we can add our own script (e.g., `main.js`).
 
@@ -161,7 +161,7 @@ d3.select('body')
 
 Your D3 statements can be much longer, so you should always put each operator on its own indented line.
 
-## 4. Binding Data to Visual Elements
+## 4. <a name="binding-data">Binding Data to Visual Elements</a>
 
 ### Binding data to DOM elements
 
@@ -330,7 +330,7 @@ svg.selectAll('rect')
 
 Now, we highly recommend that you create your first D3 project and implement this little example.
 
-1. **Create a new D3 project or clone the starter template from [TODO]***
+1. **Create a new D3 project or clone our [D3 project starter template](https://github.com/UBC-InfoVis/d3-starter-template)**
  
 2. **Append a new SVG element to your HTML document with D3** (width: 500px, height: 500px)
 
@@ -454,8 +454,7 @@ d.age = +d.age;
 
 *Use your files from the previous activity. You don't have to create a new project.*
 
-1. **Download the dataset:** [http://www.cs171.org/2019/assets/scripts/lab3/cities.csv
-](http://www.cs171.org/2019/assets/scripts/lab3/cities.csv) [todo]
+1. **Download the dataset:** [https://raw.githubusercontent.com/UBC-InfoVis/datasets/master/cities\_and\_population.csv](https://raw.githubusercontent.com/UBC-InfoVis/datasets/master/cities_and_population.csv)
 
 2. **Use D3 to load the CSV file**
 
