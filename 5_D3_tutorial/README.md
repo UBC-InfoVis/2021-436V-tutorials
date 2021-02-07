@@ -251,6 +251,9 @@ You have seen how to draw a vector map with D3 but we are currently not encoding
         .attr('cx', d => projection([d.lon,d.lat])[0])
         .attr('cy', d => projection([d.lon,d.lat])[1]);
 	```
+	
+	We have access to specific x/y coordinates to position the symbols but sometimes we just have the outlines of a region, such as a country, and need to show the symbol in the middle. For those cases, we can use the D3 function [d3.geoCentroid()](https://github.com/d3/d3-geo#geoCentroid) to get the geographic center of a GeoJSON feature.
+	
 	&nbsp;
 	
 6. **Add text labels to all symbols**
@@ -416,7 +419,7 @@ See the full example on [codesandbox](https://githubbox.com/UBC-InfoVis/2021-436
 
 ## 4. <a name="leaflet">Interactive Maps with Leaflet</a>
 
-We can add interactive components to a D3 vector map, such as tooltips or zooming and panning, but the functionality is limited and the information density is usually not comparable to *interactive tile maps*, with Google Maps being the most prominent example. For many cases, a basic vector map is appropriate because we do not want to have additional layers or information that distracts from the actual data we need to communicate or analyze. 
+We can add interactive components to a D3 vector map, such as tooltips or [zooming and panning](https://bl.ocks.org/d3noob/8498ab07f1beb8da0509cd8640452291), but the functionality is limited and the information density is usually not comparable to *interactive tile maps*, with Google Maps being the most prominent example. For many cases, a basic vector map is appropriate because we do not want to have additional layers or information that distracts from the actual data we need to communicate or analyze. 
 
 For some tasks, an interactive, zoomable map may be beneficial. For example, in our case study [Vancouver Bike Sharing](todo), we visualize bikeways and available bikes/slots at docking stations. In this specific scenario, it is helpful for users to zoom in and out to see roads, terrain, etc. at different levels of granularity. We can also use the geo location to automatically zoom in and show the nearest bike sharing stations.
 
