@@ -355,9 +355,9 @@ You can look at the full example on [codesandbox](https://githubbox.com/UBC-Info
 
 [![Stacked Bar Chart](images/codesandbox_d3-stacked-bar-chart.png?raw=true "Stacked Bar Chart")](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-stacked-bar-chart)
 
-We have also created an interactive stacked area chart using `d3.stack()` that you should check out on [codesandbox](https://github.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-stacked-area-chart):
+We have also created an interactive stacked area chart using `d3.stack()` that you should check out on [codesandbox](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-stacked-area-chart):
 
-[![Stacked Area Chart](images/codesandbox_d3-stacked-area-chart.png?raw=true "Stacked Area Chart")](https://github.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-stacked-area-chart)
+[![Stacked Area Chart](images/codesandbox_d3-stacked-area-chart.png?raw=true "Stacked Area Chart")](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-stacked-area-chart)
 
 ---
 
