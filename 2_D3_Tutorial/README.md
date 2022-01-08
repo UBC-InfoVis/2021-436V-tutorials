@@ -13,7 +13,7 @@ In this tutorial, you will learn how to create basic chart types, such as bar ch
 
 ### SVG groups
 
-In the last tutorial, we created basic SVG shapes, like rectangles or circles, but there is another SVG element that is very useful for programming in D3: the group element (`<g></g>`). In contrast to graphical elements, the group element does not have a visual presence but it helps us to organize other elements and to apply *transformations*. In this way, we can create hierarchical structures. 
+In the last tutorial, we created basic SVG shapes, like rectangles or circles, but there is another SVG element that is very useful for programming in D3: the group element (`<g></g>`). In contrast to graphical elements, the group element does not have a visual presence but it helps us to organize other elements and to apply *transformations*. In this way, we can create hierarchical structures.
 
 ```javascript
 // Create group element
@@ -24,7 +24,7 @@ const circle = group.append('circle')
 	.attr('r', 4)
 	.attr('fill', 'blue');
 ```
-Group elements are invisible but we can apply transformations, for example *translate()* or *rotate()*, to the group and it will affect the rendering of all child elements. 
+Group elements are invisible but we can apply transformations, for example *translate()* or *rotate()*, to the group and it will affect the rendering of all child elements.
 
 ```javascript
 // Group element with 'transform' attribute
@@ -64,7 +64,7 @@ const iceCreamScale = d3.scaleLinear()
 
 // Call the function and pass an input value
 iceCreamScale(5000);	// Returns: 100
-``` 
+```
 This was pretty easy, because we already knew the max value of the data. What if we load data from an external source and don't know the data range the data is going to be in? Instead of specifying fixed values for the domain, we can use the convenient array functions ```d3.min()```, ```d3.max()``` or ```d3.extent()```.
 
 ```javascript
@@ -87,7 +87,7 @@ const extent = d3.extent(quarterlyReport, d => d.sales);
 
 #### Time scales
 
-Time scales are a variant of linear scales that have a temporal domain. They require JS date objects 
+Time scales are a variant of linear scales that have a temporal domain. They require JS date objects
 
 #### Ordinal scales
 
@@ -143,7 +143,7 @@ We can then bind the colour scale to data values and render it:
 ![D3 Ordinal Color Scale](images/color_scale_ordinal.png?raw=true)
 
 
-Instead of using a fixed range of colours, you can use linear scale functions to create colour gradients: 
+Instead of using a fixed range of colours, you can use linear scale functions to create colour gradients:
 
 ```javascript
 const linearColor = d3.scaleLinear()
@@ -202,7 +202,7 @@ var xAxis = d3.axisBottom()
 There are many different options to customize axes:
 
 - Number of ticks: `.ticks(5)`
-- Tick format, e.g. as percentage: `.tickFormat(d3.format(".0%"))` 
+- Tick format, e.g. as percentage: `.tickFormat(d3.format(".0%"))`
 - Predefined tick values: `.tickValues([0, 10, 20, 30, 40])`
 - Remove tick marks at the beginning and end of an axis: `.tickSizeOuter(0)`
 
@@ -212,7 +212,13 @@ You can read more about D3 axis, ticks, and tick formatting in the [D3 documenta
 
 ## 2. <a name="making-a-bar-chart">Making a Bar Chart</a>
 
-Now, we know most of the concepts to create a D3 bar chart with a categorical y-axis and a linear x-axis. First, we need to download the D3 library and create a simple HTML page. **Important:** A local web server is necessary because we load data from a CSV file; otherwise we will get a browser error.
+Now, we know most of the concepts to create a D3 bar chart with a categorical y-axis and a linear x-axis. First, we need to download the D3 library and create a simple HTML page. **Important:** A local web server is necessary because we load data from a CSV file; otherwise we will get a browser error. You can use [python](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/set_up_a_local_testing_server#running_a_simple_local_http_server), [node](https://www.npmjs.com/package/http-server), [php](https://www.php.net/manual/en/features.commandline.webserver.php), or any that works with your dev environment.
+
+To follow along with the below example, first clone our [d3-starter template](https://github.com/UBC-InfoVis/d3-starter-template), then start a local web server.
+
+We'll be making the bar chart below using the *quarterlyReport* data from above.
+
+![D3 Bar Chart](images/d3_bar_chart_2.png?raw=true "D3 Bar Chart")
 
 *index.html*
 
@@ -234,6 +240,40 @@ Now, we know most of the concepts to create a D3 bar chart with a categorical y-
 </html>
 ```
 
+&nbsp;
+
+-----
+
+#### Activity (1)
+
+1. First clone our [d3-starter template](https://github.com/UBC-InfoVis/d3-starter-template), then start a local web server.
+
+2. You can either source the *quarterlyReport* data from the Javascript array above, or download the equivalent `.csv` file from our [Github](https://github.com/UBC-InfoVis/2021-436V-examples/blob/6c7678cc45668fbf0b08727f7115abf449b95887/d3-static-bar-chart/data/sales.csv).
+
+3. Add a `<div>` element in the `<body>` tag of `index.html` where we will add our svg chart.
+
+4. **Use D3 to load the CSV file or Javascript array**
+
+5. **Prepare the data: Convert all numerical values to numbers.**
+
+6. **Append an empty svg and define its dimensions**
+   (width = 500, height = 120)
+
+7. **Initialize your scales and axes**
+	Set and define:
+	- xScale
+	- yScale
+	- xAxis
+	- yAxis
+
+8. **Draw your axes**
+
+9. **Draw the rectangles**
+
+-----
+
+&nbsp;
+
 The D3 implementation is in a separate JS file `main.js`. See code comments below for further details.
 
 *main.js*
@@ -248,7 +288,7 @@ d3.csv('data/sales.csv')
 		data.forEach(d => {
 		  d.sales = +d.sales;
 		});
-    
+
 		showBarChart(data);
 	})
  	.catch(error => {
@@ -261,35 +301,35 @@ d3.csv('data/sales.csv')
 function showBarChart(data) {
 	const width = 500;
 	const height = 120;
-	
+
 	// Append empty SVG container and set size
 	const svg = d3.select('#chart').append('svg')
 	  .attr('width', width)
 	  .attr('height', height);
-	
+
 	// Initialize linear and ordinal scales (input domain and output range)
 	const xScale = d3.scaleLinear()
 	  .domain([0, d3.max(data, d => d.sales)])
 	  .range([0, width]);
-	
+
 	const yScale = d3.scaleBand()
 	  .domain(data.map(d => d.month))
 	  .range([0, height])
 	  .paddingInner(0.1);
-	
+
 	// Initialize axes
 	const xAxis = d3.axisBottom(xScale);
 	const yAxis = d3.axisLeft(yScale);
-	
+
 	// Draw the axis
 	const xAxisGroup = svg.append('g')
 	  .attr('class', 'axis x-axis')
 	  .call(xAxis);
-	
+
 	const yAxisGroup = svg.append('g')
 	  .attr('class', 'axis y-axis')
 	  .call(yAxis);
-	
+
 	// Add rectangles
 	const bars = svg.selectAll('rect')
 	  .data(data)
@@ -329,7 +369,7 @@ Positioning the axes or defining the correct margins between components can be c
 
 #### Other chart refinements
 
-We apply `.tickSizeOuter(0)` to remove tick marks at the beginning and end of an axis, and set the number of x-axis ticks with `.ticks(6)`. Additionally, we use CSS to adjust the style of the chart slightly. We now also specify the bar colour in CSS because it is independent of the data.
+We apply `.tickSizeOuter(0)` to remove tick marks at the beginning and end of an axis, and set the number of x-axis ticks with `.ticks(6)`. Additionally, we use CSS to adjust the style of the chart slightly. We now also specify the bar colour in CSS (`css/style.css`) because it is independent of the data.
 
 ```css
 .axis path,
@@ -352,54 +392,56 @@ We apply `.tickSizeOuter(0)` to remove tick marks at the beginning and end of an
 
 *```shape-rendering``` is an SVG property which specifies how the SVG elements are getting rendered. We use `shape-rendering: crispEdges;` in this example to make sure that we don't get blurry axes and bars.*
 
+---
+
 The final D3 code in the `showBarChart()` function:
 
 ```javascript
-function showBarChart(data) {	
+function showBarChart(data) {
 	// Margin object with properties for the four directions
 	const margin = {top: 5, right: 5, bottom: 20, left: 50};
-	
+
 	// Width and height as the inner dimensions of the chart area
 	const width = 500 - margin.left - margin.right,
 	height = 140 - margin.top - margin.bottom;
-	
+
 	// Define 'svg' as a child-element (g) from the drawing area and include spaces
 	const svg = d3.select('#chart').append('svg')
 		.attr('width', width + margin.left + margin.right)
 		.attr('height', height + margin.top + margin.bottom)
 		.append('g')
 		.attr('transform', `translate(${margin.left}, ${margin.top})`);
-	
+
 	// All subsequent functions/properties can basically ignore the margins
-	
+
 	// Initialize linear and ordinal scales (input domain and output range)
 	const xScale = d3.scaleLinear()
 		.domain([0, d3.max(data, d => d.sales)])
 		.range([0, width]);
-	
+
 	const yScale = d3.scaleBand()
 		.domain(data.map(d => d.month))
 		.range([0, height])
 		.paddingInner(0.15);
-	
+
 	// Initialize axes
 	const xAxis = d3.axisBottom(xScale)
 		.ticks(6)
 		.tickSizeOuter(0);
-	
+
 	const yAxis = d3.axisLeft(yScale)
 		.tickSizeOuter(0);
-	
+
 	// Draw the axis (move xAxis to the bottom with 'translate')
 	const xAxisGroup = svg.append('g')
 		.attr('class', 'axis x-axis')
 		.attr('transform', `translate(0, ${height})`)
 		.call(xAxis);
-		
+
 	const yAxisGroup = svg.append('g')
 		.attr('class', 'axis y-axis')
 		.call(yAxis);
-	
+
 	// Add rectangles
 	svg.selectAll('rect')
 		.data(data)
@@ -410,7 +452,7 @@ function showBarChart(data) {
 		.attr('height', yScale.bandwidth())
 		.attr('y', d => yScale(d.month))
 		.attr('x', 0);
-} 
+}
 ```
 
 *Result:*
@@ -428,7 +470,7 @@ Thinking about the structure of your project early on can save you a lot of time
 
 You should always try to split a complex problem into smaller, easier-to-tackle sub-problems. Each sub-problem can then be solved independently and afterwards integrated into the final system.
 
-**D3 visualizations should be organized and structured using individual classes for different chart types**: do not have one monolithic file containing all of your code. Also, think about **consistent structure for the functions within each class**, to make these components as flexible and reusable as possible. 
+**D3 visualizations should be organized and structured using individual classes for different chart types**: do not have one monolithic file containing all of your code. Also, think about **consistent structure for the functions within each class**, to make these components as flexible and reusable as possible.
 
 We recommend creating a JavaScript class for each visualization chart type that is used following this pipeline:
 
@@ -451,15 +493,15 @@ class BarChart {
       containerHeight: _config.containerHeight || 140,
       margin: { top: 10, bottom: 30, right: 10, left: 30 }
     }
-    
-    // Call a class function 
+
+    // Call a class function
     this.initVis();
   }
-  
+
   initVis() {
   	...
   }
-  
+
   ...
 }
 ```
@@ -480,12 +522,12 @@ Object attributes can be updated afterwards:
 barchart.data = data;
 ```
 
-The variables should be stored in the chart object. We recommend avoiding simply using the  ```this``` keyword within complex class code involving SVG elements because the scope of ```this``` will change and it will cause undesirable side-effects. Instead, we recommend creating another variable (for example ```vis``` or ```_this```) at the start of each function to store the *this*-accessor.  
+The variables should be stored in the chart object. We recommend avoiding simply using the  ```this``` keyword within complex class code involving SVG elements because the scope of ```this``` will change and it will cause undesirable side-effects. Instead, we recommend creating another variable (for example ```vis``` or ```_this```) at the start of each function to store the *this*-accessor.
 
 ```javascript
 initVis() {
     let vis = this;
-    
+
     vis.svg = d3.select(vis.config.parentElement).append('svg');
     vis.chart = vis.svg.append('g')
         .attr('transform', `translate(${vis.config.margin.left},${vis.config.margin.top})`);
@@ -522,16 +564,55 @@ We recommend that you create object instances for the chart type classes in the 
 
 This methodology will become very helpful for developing larger systems and more sophisticated interaction mechanisms.
 
+&nbsp;
+
+-----
+
+#### Activity (2)
+
+**Use your files from the previous activity. You don't have to create a new project.**
+
+1. Create a new re-usable component, ``barchart.js``, with a constructor, and the 3 functions we recommend: ``initVis()``, ``renderVis()``, ``updateVis()``.
+
+2. **Fill out your constructor and call ``initVis()`` at the end.** Constructors will often take either 1 or 2 parameters: *config* and *data*.
+
+3. **Decompose part of the code from ``showBarChart()`` into ``initVis()``**
+
+	Often, we will define several inital features of our vis in initVis():
+
+	- width/height
+	- x/y scales
+	- x/y axes (including their `<g>` tags)
+	- group (`<g>`) elements that contain our chart
+	- titles, legends, other static elements
+
+4. **Fill out ``updateVis()``**
+
+	- Specify your x/y accessor functions ```vis.xValue = d => d.value```
+	- Set the scale input domains for your x/y scales
+	- Call ``renderVis()``
+
+5. **Append rectangles and draw the chart in ``renderVis()``**
+
+	- Append `<rect>` svg elements to the chart
+	- (sneak-peak to the next tutorial, implement a *data-join* using the ``enter-update-exit`` pattern or ``join`` function)
+
+Your final result might look something like the below example. Click through to our [codesandbox](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-static-bar-chart) to see where our code and yours might have diverged.
+
+-----
+
+&nbsp;
+
 ### Examples
 
 We have used this approach to turn the previous bar chart example into a resuable class. You can look at the complete example on [codesandbox](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-static-bar-chart) where you can also play around with different parameters and styles.
 
 [![D3 Bar Chart](images/codesandbox_d3-static-bar-chart.png?raw=true "D3 Bar Chart")](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-static-bar-chart)
 
-You should also check out our scatter plot example on [codesandbox](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-static-scatter-plot).
+You should also check out our scatter plot example on [codesandbox](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-static-scatter-plot). This is different than the bar chart code in a few ways. It still uses the reusable chart approach, but includes a static html legend, and some chart titles.
 
 [![Static scatter plot](images/codesandbox_d3-static-scatter-plot.png?raw=true "Static scatter plot")](https://githubbox.com/UBC-InfoVis/2021-436V-examples/tree/master/d3-static-scatter-plot)
-	
+
 &nbsp;
 
 ## 4. <a name="making-line-and-area-charts">Making Line and Area Charts</a>
